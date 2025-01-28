@@ -597,11 +597,15 @@ class PaytelligenceCard extends AbstractExtensibleModel implements IdentityInter
         }
 
         if (isset($data[self::COLUMN_EXPYEAR])) {
-            $this->setExpiryYear($data[self::COLUMN_EXPYEAR]);
+            if (is_numeric($data[self::COLUMN_EXPYEAR])) {
+                $this->setExpiryYear((int)$data[self::COLUMN_EXPYEAR]);
+            }
         }
 
         if (isset($data[self::COLUMN_EXPMONTH])) {
-            $this->setExpiryMonth($data[self::COLUMN_EXPMONTH]);
+            if (is_numeric($data[self::COLUMN_EXPMONTH])) {
+                $this->setExpiryMonth((int)$data[self::COLUMN_EXPMONTH]);
+            }
         }
 
         if (isset($data[self::COLUMN_TRNSLMT])) {

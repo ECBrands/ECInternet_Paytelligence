@@ -106,6 +106,29 @@ class PaytelligenceTransRepository implements PaytelligenceTransRepositoryInterf
         return null;
     }
 
+    public function getByTransactionId(
+        string $gatewayTransactionId
+    ) {
+        /** @var \ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceTrans\Collection $collection */
+        $collection = $this->transactionCollectionFactory->create()
+            ->addFieldToFilter(PaytelligenceTrans::COLUMN_GWTRNSID, ['eq' => $gatewayTransactionId])
+            ->addFieldToFilter(PaytelligenceTrans::COLUMN_PARENTID, ['eq' => '']);
+
+        $collectionCount = $collection->getSize();
+        if ($collectionCount === 1) {
+            $transaction = $collection->getFirstItem();
+            if ($transaction instanceof PaytelligenceTransInterface) {
+                return $transaction;
+            }
+        } elseif ($collectionCount === 0) {
+            throw new NoSuchEntityException(__('Unable to find Paytelligence transaction with GWTRNSID "%1"', $gatewayTransactionId));
+        } else {
+            throw new LocalizedException(__('Found multiple Paytelligence transactions with GWTRANSID "%1"', $gatewayTransactionId));
+        }
+
+        return null;
+    }
+
     public function getList(
         SearchCriteriaInterface $searchCriteria
     ) {

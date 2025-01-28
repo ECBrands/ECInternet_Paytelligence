@@ -118,6 +118,8 @@ interface PaytelligenceTransInterface
      */
     const COLUMN_CUSTOMER_ID                     = 'customer_id';
 
+    const COLUMN_PARENT_TRANSACTION_ID           = 'parent_transaction_id';
+
     const COLUMN_AREA_CODE                       = 'area_code';
 
     /**

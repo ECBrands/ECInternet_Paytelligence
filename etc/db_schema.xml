@@ -98,6 +98,7 @@
     <column xsi:type="varchar" name="increment_id" nullable="false" length="32" comment="Magento Order Increment ID" />
     <column xsi:type="int" name="order_id" unsigned="true" nullable="false" comment="Magento Order Id" />
     <column xsi:type="int" name="customer_id" padding="11" unsigned="true" nullable="false" comment="Magento Customer ID" />
+    <column xsi:type="int" name="parent_transaction_id" padding="11" unsigned="true" nullable="false" comment="Parent Transaction Id" />
     <column xsi:type="varchar" name="area_code" nullable="false" length="20" comment="Area Code" />
     <column xsi:type="varchar" name="sage_idcust" nullable="false" length="12" comment="Sage Customer Number" />
     <column xsi:type="int" name="sage_nntrans_id" padding="11" unsigned="true" nullable="false" default="0" comment="Sage NNTRANS ID" />

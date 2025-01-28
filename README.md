@@ -24,6 +24,19 @@
 ## Configuration
 
 ## Specifications
+### Custom NNCARD Columns
+- `last_order_id`
+### Custom NNTRANS Columns
+| Column                  | Description                    | Definition    | When Set                              | When Read                         |
+|-------------------------|--------------------------------|---------------|---------------------------------------|-----------------------------------|
+| `parent_card_id`        | The parent card ID             | `int(11)`     | When a new card is added to a profile | When a card is added to a profile |
+| `increment_id`          | The Magento order increment ID | `varchar(32)` | When a new card is added to a profile | When a card is added to a profile |
+| `order_id`              | The Magento order ID           | `int`         | When a new card is added to a profile | When a card is added to a profile |
+| `customer_id`           | The Magento customer ID        | `int(11)`     | When a new card is added to a profile | When a card is added to a profile |
+| `parent_transaction_id` | The parent transaction ID      | `int(11)`     | When a new card is added to a profile | When a card is added to a profile |
+| `area_code`             | The Magento area code          | `varchar(20)` | When a new card is added to a profile | When a card is added to a profile |
+| `sage_idcust`           | The Sage customer ID           | `varchar(12)` | When a new card is added to a profile | When a card is added to a profile |
+| `sage_nntrans_id`       | The Sage transaction ID        | `int(11)`     | When a new card is added to a profile | When a card is added to a profile |
 
 ## Attributes
 

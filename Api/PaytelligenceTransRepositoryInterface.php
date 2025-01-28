@@ -37,6 +37,17 @@ interface PaytelligenceTransRepositoryInterface
     public function getById(int $transactionId);
 
     /**
+     * Get transaction by gateway transaction id
+     *
+     * @param string $gatewayTransactionId
+     *
+     * @return \ECInternet\Paytelligence\Api\Data\PaytelligenceTransInterface|null
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
+    public function getByTransactionId(string $gatewayTransactionId);
+
+    /**
      * Get list
      *
      * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria

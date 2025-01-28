@@ -514,6 +514,16 @@ class PaytelligenceTrans extends AbstractModel implements IdentityInterface, Pay
         $this->setData(self::COLUMN_CUSTOMER_ID, $customerId);
     }
 
+    public function getParentTransactionId()
+    {
+        return $this->getData(self::COLUMN_PARENT_TRANSACTION_ID);
+    }
+
+    public function setParentTransactionId($parentTransactionId)
+    {
+        $this->setData(self::COLUMN_PARENT_TRANSACTION_ID, $parentTransactionId);
+    }
+
     public function getAreaCode()
     {
         $this->getData(self::COLUMN_AREA_CODE);
@@ -542,5 +552,156 @@ class PaytelligenceTrans extends AbstractModel implements IdentityInterface, Pay
     public function setSageTransactionId($transactionId)
     {
         $this->setData(self::COLUMN_SAGE_NNTRANS_ID, $transactionId);
+    }
+
+    public function updateFromArray(array $data)
+    {
+        if (isset($data[PaytelligenceTrans::COLUMN_PARENT_CARD_ID])) {
+            $this->setParentCardId($data[PaytelligenceTrans::COLUMN_PARENT_CARD_ID]);
+        }
+
+        if (isset($data[PaytelligenceTrans::COLUMN_CARDID])) {
+            $this->setCardId($data[PaytelligenceTrans::COLUMN_CARDID]);
+        }
+
+        if (isset($data[PaytelligenceTrans::COLUMN_CARDNUM])) {
+            $this->setCardNumber($data[PaytelligenceTrans::COLUMN_CARDNUM]);
+        }
+
+        if (isset($data[PaytelligenceTrans::COLUMN_MERCODE])) {
+            $this->setMerchantCode($data[PaytelligenceTrans::COLUMN_MERCODE]);
+        }
+
+        if (isset($data[PaytelligenceTrans::COLUMN_PARENTID])) {
+            $this->setParentId($data[PaytelligenceTrans::COLUMN_PARENTID]);
+        }
+
+        if (isset($data[PaytelligenceTrans::COLUMN_TRNSSRC])) {
+            $this->setTransactionSource($data[PaytelligenceTrans::COLUMN_TRNSSRC]);
+        }
+
+        if (isset($data[PaytelligenceTrans::COLUMN_AUTHED])) {
+            $this->setAuthorizedStatus($data[PaytelligenceTrans::COLUMN_AUTHED]);
+        }
+
+        if (isset($data[PaytelligenceTrans::COLUMN_TRNSTYPE])) {
+            $this->setTransactionType($data[PaytelligenceTrans::COLUMN_TRNSTYPE]);
+        }
+
+        if (isset($data[PaytelligenceTrans::COLUMN_TRNSSTTE])) {
+            $this->setTransactionState($data[PaytelligenceTrans::COLUMN_TRNSSTTE]);
+        }
+
+        if (isset($data[PaytelligenceTrans::COLUMN_TRNSDATE])) {
+            $this->setTransactionDate($data[PaytelligenceTrans::COLUMN_TRNSDATE]);
+        }
+
+        if (isset($data[PaytelligenceTrans::COLUMN_TRNSTIME])) {
+            $this->setTransactionTime($data[PaytelligenceTrans::COLUMN_TRNSTIME]);
+        }
+
+        if (isset($data[PaytelligenceTrans::COLUMN_DOCCURR])) {
+            $this->setDocumentCurrency($data[PaytelligenceTrans::COLUMN_DOCCURR]);
+        }
+
+        if (isset($data[PaytelligenceTrans::COLUMN_DOCAMT])) {
+            $this->setDocumentAmount($data[PaytelligenceTrans::COLUMN_DOCAMT]);
+        }
+
+        if (isset($data[PaytelligenceTrans::COLUMN_TRNSCURR])) {
+            $this->setTransactionCurrency($data[PaytelligenceTrans::COLUMN_TRNSCURR]);
+        }
+
+        if (isset($data[PaytelligenceTrans::COLUMN_TRNSAMT])) {
+            $this->setTransactionAmount($data[PaytelligenceTrans::COLUMN_TRNSAMT]);
+        }
+
+        if (isset($data[PaytelligenceTrans::COLUMN_CONV])) {
+            $this->setConversionRate($data[PaytelligenceTrans::COLUMN_CONV]);
+        }
+
+        if (isset($data[PaytelligenceTrans::COLUMN_RATEOP])) {
+            $this->setRateOperator($data[PaytelligenceTrans::COLUMN_RATEOP]);
+        }
+
+        if (isset($data[PaytelligenceTrans::COLUMN_AUTHAMT])) {
+            $this->setAuthorizeAmount($data[PaytelligenceTrans::COLUMN_AUTHAMT]);
+        }
+
+        if (isset($data[PaytelligenceTrans::COLUMN_CAPAMT])) {
+            $this->setCaptureAmount($data[PaytelligenceTrans::COLUMN_CAPAMT]);
+        }
+
+        if (isset($data[PaytelligenceTrans::COLUMN_ADDCHRG])) {
+            $this->setAdditionalCharges($data[PaytelligenceTrans::COLUMN_ADDCHRG]);
+        }
+
+        if (isset($data[PaytelligenceTrans::COLUMN_ORDERNUM])) {
+            $this->setOrderNumber($data[PaytelligenceTrans::COLUMN_ORDERNUM]);
+        }
+
+        if (isset($data[PaytelligenceTrans::COLUMN_DOCNUM])) {
+            $this->setDocumentNumber($data[PaytelligenceTrans::COLUMN_DOCNUM]);
+        }
+
+        if (isset($data[PaytelligenceTrans::COLUMN_DOCTYPE])) {
+            $this->setDocumentType($data[PaytelligenceTrans::COLUMN_DOCTYPE]);
+        }
+
+        if (isset($data[PaytelligenceTrans::COLUMN_CUSTOMER])) {
+            $this->setCustomerNumber($data[PaytelligenceTrans::COLUMN_CUSTOMER]);
+        }
+
+        if (isset($data[PaytelligenceTrans::COLUMN_GWTRNSID])) {
+            $this->setGatewayTransactionId($data[PaytelligenceTrans::COLUMN_GWTRNSID]);
+        }
+
+        if (isset($data[PaytelligenceTrans::COLUMN_GWREFCDE])) {
+            $this->setGatewayReferenceCode($data[PaytelligenceTrans::COLUMN_GWREFCDE]);
+        }
+
+        if (isset($data[PaytelligenceTrans::COLUMN_GWORDRID])) {
+            $this->setGatewayOrderId($data[PaytelligenceTrans::COLUMN_GWORDRID]);
+        }
+
+        if (isset($data[PaytelligenceTrans::COLUMN_TRNSCMT])) {
+            $this->setTransactionComment($data[PaytelligenceTrans::COLUMN_TRNSCMT]);
+        }
+
+        if (isset($data[PaytelligenceTrans::COLUMN_ARBNUM])) {
+            $this->setARBatchNumber($data[PaytelligenceTrans::COLUMN_ARBNUM]);
+        }
+
+        if (isset($data[PaytelligenceTrans::COLUMN_ARBENUM])) {
+            $this->setARBatchEntryNumber($data[PaytelligenceTrans::COLUMN_ARBENUM]);
+        }
+
+        if (isset($data[PaytelligenceTrans::COLUMN_ASDCTYPE])) {
+            $this->setAssignedDocumentType($data[PaytelligenceTrans::COLUMN_ASDCTYPE]);
+        }
+
+        if (isset($data[PaytelligenceTrans::COLUMN_TESTMODE])) {
+            $this->setTestMode($data[PaytelligenceTrans::COLUMN_TESTMODE]);
+        }
+
+        if (isset($data[PaytelligenceTrans::COLUMN_INCREMENT_ID])) {
+            $this->setIncrementId($data[PaytelligenceTrans::COLUMN_INCREMENT_ID]);
+        }
+
+        if (isset($data[PaytelligenceTrans::COLUMN_ORDER_ID])) {
+            if (is_numeric($data[PaytelligenceTrans::COLUMN_ORDER_ID])) {
+                $this->setOrderId((int)$data[PaytelligenceTrans::COLUMN_ORDER_ID]);
+            }
+        }
+
+        if (isset($data[PaytelligenceTrans::COLUMN_CUSTOMER_ID])) {
+            $this->setCustomerId($data[PaytelligenceTrans::COLUMN_CUSTOMER_ID]);
+        }
+
+        if (isset($data[PaytelligenceTrans::COLUMN_PARENT_TRANSACTION_ID])) {
+            if (is_numeric($data[PaytelligenceTrans::COLUMN_PARENT_TRANSACTION_ID])) {
+                $this->setParentTransactionId((int)$data[PaytelligenceTrans::COLUMN_PARENT_TRANSACTION_ID]);
+            }
+        }
     }
 }
