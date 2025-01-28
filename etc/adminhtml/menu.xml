@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="ECInternet_Paytelligence::menu"
+		     title="Paytelligence"
+		     translate="title"
+		     module="ECInternet_Paytelligence"
+		     sortOrder="170"
+		     parent="ECInternet_Base::base"
+		     resource="ECInternet_Paytelligence::menu"
+		/>
+
+		<add id="ECInternet_Paytelligence::settings"
+		     title="Settings"
+		     translate="title"
+		     module="ECInternet_Paytelligence"
+		     parent="ECInternet_Paytelligence::menu"
+		     sortOrder="10"
+		     action="adminhtml/system_config/edit/section/paytelligence"
+		     resource="ECInternet_Paytelligence::settings"
+		/>
+
+		<add id="ECInternet_Paytelligence::cards"
+		     title="Paytelligence Card Vault List"
+		     translate="title"
+		     module="ECInternet_Paytelligence"
+		     parent="ECInternet_Paytelligence::menu"
+		     sortOrder="20"
+		     action="paytelligence/index/cardvaultlist"
+		     resource="ECInternet_Paytelligence::cards"
+		/>
+
+		<add id="ECInternet_Paytelligence::logs"
+		     title="Paytelligence Request Response Log"
+		     translate="title"
+		     module="ECInternet_Paytelligence"
+		     parent="ECInternet_Paytelligence::menu"
+		     sortOrder="30"
+		     action="paytelligence/index/requestresponselog"
+		     resource="ECInternet_Paytelligence::logs"
+		/>
+
+		<add id="ECInternet_Paytelligence::transactions"
+		     title="Paytelligence Transactions Log"
+		     translate="title"
+		     module="ECInternet_Paytelligence"
+		     parent="ECInternet_Paytelligence::menu"
+		     sortOrder="40"
+		     action="paytelligence/index/transactionlog"
+		     resource="ECInternet_Paytelligence::transactions"
+		/>
+	</menu>
+</config>

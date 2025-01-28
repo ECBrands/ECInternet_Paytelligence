@@ -1,0 +1,87 @@
+<?php
+/**
+ * Copyright (C) EC Brands Corporation - All Rights Reserved
+ * Contact Licensing@ECInternet.com for use guidelines
+ */
+declare(strict_types=1);
+?>
+
+<?php /** @var \ECInternet\Paytelligence\Block\Card\Index $block */ ?>
+<?php /** @var \Magento\Framework\Escaper $escaper */ ?>
+
+<a class="action primary" href="<?= $escaper->escapeUrl($block->getUrl('paytelligence/card/new')) ?>">
+    <?= $escaper->escapeHtml(__('Add Card')) ?>
+</a><br><br>
+
+<?php /** @var \ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard\Collection $cards */?>
+<?php $cards = $block->getCards(); ?>
+<?php if ($cards && count($cards)) { ?>
+    <div class="table-wrapper order-history">
+        <table id="my-orders-table" class="data table table-order-items history">
+            <caption class="table-caption"><?= $escaper->escapeHtml(__('Cards')) ?></caption>
+
+            <thead>
+            <tr>
+                <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Card #')) ?></th>
+                <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Exp. Date')) ?></th>
+                <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Card Type')) ?></th>
+                <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Name on Card')) ?></th>
+                <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Billing Address')) ?></th>
+                <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Email')) ?></th>
+                <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('ACTIONS')) ?></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php /** @var \ECInternet\Paytelligence\Model\PaytelligenceCard $card */?>
+            <?php foreach ($cards as $card) { ?>
+                <tr>
+                    <td data-th="<?= $escaper->escapeHtml(__('Card Number')) ?>" class="col a-center">
+                        <?= $escaper->escapeHtml($card->getCardMask()) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml(__('Expiration Date')) ?>" class="col a-center">
+                        <?= $escaper->escapeHtml($card->getExpirationDisplay()) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml(__('Card Type')) ?>" class="col a-center">
+                        <?= $escaper->escapeHtml($card->getCardTypeName()) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml(__('Name on Card')) ?>" class="col a-center">
+                        <?= $escaper->escapeHtml($card->getCardholdersName()) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml(__('Billing Address')) ?>" class="col a-center">
+                        <?= $escaper->escapeHtml($card->getBillToAddressLine1()) ?>
+                        <?= $escaper->escapeHtml($card->getBillToAddressLine2()) ?>
+                        <br />
+                        <?= $escaper->escapeHtml($card->getBillToCity()) ?>,
+                        <?= $escaper->escapeHtml($card->getBillToProvinceState()) ?>
+                        <?= $escaper->escapeHtml($card->getBillToZipPostalCode()) ?>
+                        <?= $escaper->escapeHtml($card->getBillToCountry()) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml(__('Email')) ?>" class="col a-center">
+                        <?= $escaper->escapeHtml($card->getEmail()) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml(__('ACTIONS')) ?>" class="col a-center">
+                        <!--
+                        <a href="<?= $escaper->escapeUrl($block->getEditUrl($card)) ?>" class="action edit">
+                            <span><?= $escaper->escapeHtml(__('Edit')) ?></span>
+                        </a>
+                        -->
+                        <a href="<?= $escaper->escapeUrl($block->getDeleteUrl($card)) ?>" class="action delete">
+                            <span><?= $escaper->escapeHtml(__('Delete')) ?></span>
+                        </a>
+                    </td>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="pager-wrapper">
+        <?php if ($block->getPagerHtml()) { ?>
+            <div class="order-products-toolbar toolbar bottom custom-pager-bottom"><?= $block->getPagerHtml() ?></div>
+        <?php } ?>
+    </div>
+<?php } else { ?>
+    <div class="message info empty">
+        <span><?= $escaper->escapeHtml(__('You have no cards.')) ?></span>
+    </div>
+<?php } ?>

@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+	<!-- Card -->
+	<route url="/V1/paytelligence/cards" method="PUT">
+		<service class="ECInternet\Paytelligence\Api\PaytelligenceCardRepositoryInterface" method="save" />
+		<resources>
+			<resource ref="ECInternet_Paytelligence::creditCards" />
+		</resources>
+	</route>
+	<route url="/V1/paytelligence/cards/save" method="POST">
+		<service class="ECInternet\Paytelligence\Api\PaytelligenceCardRepositoryInterface" method="save" />
+		<resources>
+			<resource ref="ECInternet_Paytelligence::creditCards" />
+		</resources>
+	</route>
+	<route url="/V1/paytelligence/cards/bulk-save" method="POST">
+		<service class="ECInternet\Paytelligence\Api\PaytelligenceCardRepositoryInterface" method="bulkSave" />
+		<resources>
+			<resource ref="ECInternet_Paytelligence::creditCards" />
+		</resources>
+	</route>
+	<route url="/V1/paytelligence/cards/:cardId" method="GET">
+		<service class="ECInternet\Paytelligence\Api\PaytelligenceCardRepositoryInterface" method="getById" />
+		<resources>
+			<resource ref="ECInternet_Paytelligence::creditCards" />
+		</resources>
+	</route>
+	<route url="/V1/paytelligence/cards/getList" method="GET">
+		<service class="ECInternet\Paytelligence\Api\PaytelligenceCardRepositoryInterface" method="getList" />
+		<resources>
+			<resource ref="ECInternet_Paytelligence::creditCards" />
+		</resources>
+	</route>
+	<route url="/V1/paytelligence/cards/setCardId" method="POST">
+		<service class="ECInternet\Paytelligence\Api\PaytelligenceCardRepositoryInterface" method="setCardId" />
+		<resources>
+			<resource ref="ECInternet_Paytelligence::creditCards" />
+		</resources>
+	</route>
+	<route url="/V1/paytelligence/cards/:id" method="DELETE">
+		<service class="ECInternet\Paytelligence\Api\PaytelligenceCardRepositoryInterface" method="deleteById" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+
+	<!-- Transaction -->
+	<route url="/V1/paytelligence/transactions/:transactionId" method="GET">
+		<service class="ECInternet\Paytelligence\Api\PaytelligenceTransRepositoryInterface" method="getById" />
+		<resources>
+			<resource ref="ECInternet_Paytelligence::transactions" />
+		</resources>
+	</route>
+	<!-- save() -->
+	<!-- bulk-save() -->
+	<route url="/V1/paytelligence/transactions/getList" method="GET">
+		<service class="ECInternet\Paytelligence\Api\PaytelligenceTransRepositoryInterface" method="getList" />
+		<resources>
+			<resource ref="ECInternet_Paytelligence::transactions" />
+		</resources>
+	</route>
+</routes>

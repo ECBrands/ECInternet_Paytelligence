@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">paytelligence_trans_listing.paytelligence_trans_listing_data_source</item>
+        </item>
+    </argument>
+
+    <settings>
+        <spinner>paytelligence_trans_data_columns</spinner>
+        <deps>
+            <dep>paytelligence_trans_listing.paytelligence_trans_listing_data_source</dep>
+        </deps>
+    </settings>
+
+    <dataSource name="paytelligence_trans_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <updateUrl path="mui/index/render" />
+        </settings>
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="paytelligence_trans_listing_data_source">
+            <settings>
+                <requestFieldName>entity_id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks" />
+        <columnsControls name="columns_controls" />
+        <filters name="listing_filters" />
+        <filterSearch name="fulltext" />
+        <paging name="listing_paging" />
+    </listingToolbar>
+
+    <columns name="paytelligence_trans_data_columns">
+        <column name="entity_id" sortOrder="10">
+            <settings>
+                <filter>textRange</filter>
+                <dataType>text</dataType>
+                <label translate="true">Id</label>
+            </settings>
+        </column>
+        <column name="parent_card_id" sortOrder="20">
+            <settings>
+                <filter>textRange</filter>
+                <dataType>text</dataType>
+                <label translate="true">Parent Card Id</label>
+            </settings>
+        </column>
+        <column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date" sortOrder="30">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Created At</label>
+            </settings>
+        </column>
+        <column name="updated_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date" sortOrder="40">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Updated At</label>
+            </settings>
+        </column>
+        <column name="TRNSNUM" sortOrder="50">
+            <settings>
+                <filter>text</filter>
+                <dataType>text</dataType>
+                <label translate="true">TRNSNUM</label>
+            </settings>
+        </column>
+        <column name="CARDID" sortOrder="60">
+            <settings>
+                <filter>text</filter>
+                <dataType>text</dataType>
+                <label translate="true">CARDID</label>
+            </settings>
+        </column>
+        <column name="CARDNUM" sortOrder="70">
+            <settings>
+                <filter>text</filter>
+                <dataType>text</dataType>
+                <label translate="true">CARDNUM</label>
+            </settings>
+        </column>
+        <column name="MERCODE" sortOrder="80">
+            <settings>
+                <filter>text</filter>
+                <dataType>text</dataType>
+                <label translate="true">MERCODE</label>
+            </settings>
+        </column>
+        <column name="PARENTID" sortOrder="90">
+            <settings>
+                <filter>text</filter>
+                <dataType>text</dataType>
+                <label translate="true">PARENTID</label>
+            </settings>
+        </column>
+        <column name="TRNSSRC" sortOrder="100">
+            <settings>
+                <filter>text</filter>
+                <dataType>text</dataType>
+                <label translate="true">TRNSSRC</label>
+            </settings>
+        </column>
+        <column name="AUTHED" sortOrder="110">
+            <settings>
+                <filter>text</filter>
+                <dataType>text</dataType>
+                <label translate="true">AUTHED</label>
+            </settings>
+        </column>
+        <column name="TRNSTYPE" sortOrder="120">
+            <settings>
+                <filter>text</filter>
+                <dataType>text</dataType>
+                <label translate="true">TRNSTYPE</label>
+            </settings>
+        </column>
+        <column name="TRNSSTTE" sortOrder="130">
+            <settings>
+                <filter>text</filter>
+                <dataType>text</dataType>
+                <label translate="true">TRNSSTTE</label>
+            </settings>
+        </column>
+        <column name="TRNSDATE" sortOrder="140">
+            <settings>
+                <filter>text</filter>
+                <dataType>text</dataType>
+                <label translate="true">TRNSDATE</label>
+            </settings>
+        </column>
+        <column name="TRNSTIME" sortOrder="150">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">TRNSTIME</item>
+                    <item name="sortOrder" xsi:type="number">150</item>
+                </item>
+            </argument>
+        </column>
+        <column name="DOCCURR">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">DOCCURR</item>
+                    <item name="sortOrder" xsi:type="number">160</item>
+                </item>
+            </argument>
+        </column>
+        <column name="DOCAMT">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">DOCAMT</item>
+                    <item name="sortOrder" xsi:type="number">170</item>
+                </item>
+            </argument>
+        </column>
+        <column name="TRNSCURR">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">TRNSCURR</item>
+                    <item name="sortOrder" xsi:type="number">180</item>
+                </item>
+            </argument>
+        </column>
+        <column name="TRNSAMT">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">TRNSAMT</item>
+                    <item name="sortOrder" xsi:type="number">190</item>
+                </item>
+            </argument>
+        </column>
+        <column name="CONV">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">CONV</item>
+                    <item name="sortOrder" xsi:type="number">200</item>
+                </item>
+            </argument>
+        </column>
+        <column name="RATEOP">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">RATEOP</item>
+                    <item name="sortOrder" xsi:type="number">210</item>
+                </item>
+            </argument>
+        </column>
+        <column name="AUTHAMT">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">AUTHAMT</item>
+                    <item name="sortOrder" xsi:type="number">220</item>
+                </item>
+            </argument>
+        </column>
+        <column name="CAPAMT">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">CAPAMT</item>
+                    <item name="sortOrder" xsi:type="number">230</item>
+                </item>
+            </argument>
+        </column>
+        <column name="ADDCHRG">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">ADDCHRG</item>
+                    <item name="sortOrder" xsi:type="number">240</item>
+                </item>
+            </argument>
+        </column>
+        <column name="ORDERNUM">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">ORDERNUM</item>
+                    <item name="sortOrder" xsi:type="number">250</item>
+                </item>
+            </argument>
+        </column>
+        <column name="DOCTYPE">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">DOCTYPE</item>
+                    <item name="sortOrder" xsi:type="number">260</item>
+                </item>
+            </argument>
+        </column>
+        <column name="CUSTOMER">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">CUSTOMER</item>
+                    <item name="sortOrder" xsi:type="number">270</item>
+                </item>
+            </argument>
+        </column>
+        <column name="GWTRNSID">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">GWTRNSID</item>
+                    <item name="sortOrder" xsi:type="number">280</item>
+                </item>
+            </argument>
+        </column>
+        <column name="GWREFCDE">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">GWREFCDE</item>
+                    <item name="sortOrder" xsi:type="number">290</item>
+                </item>
+            </argument>
+        </column>
+        <column name="GWORDRID">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">GWORDRID</item>
+                    <item name="sortOrder" xsi:type="number">300</item>
+                </item>
+            </argument>
+        </column>
+        <column name="TRNSCMT">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">TRNSCMT</item>
+                    <item name="sortOrder" xsi:type="number">310</item>
+                </item>
+            </argument>
+        </column>
+        <column name="TRNSRESD">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">TRNSRESD</item>
+                    <item name="sortOrder" xsi:type="number">320</item>
+                </item>
+            </argument>
+        </column>
+        <column name="GLACCTNO">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">GLACCTNO</item>
+                    <item name="sortOrder" xsi:type="number">330</item>
+                </item>
+            </argument>
+        </column>
+        <column name="ARBNUM">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">ARBNUM</item>
+                    <item name="sortOrder" xsi:type="number">340</item>
+                </item>
+            </argument>
+        </column>
+        <column name="ARBENUM">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">ARBENUM</item>
+                    <item name="sortOrder" xsi:type="number">350</item>
+                </item>
+            </argument>
+        </column>
+        <column name="ASDCTYPE">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">ASDCTYPE</item>
+                    <item name="sortOrder" xsi:type="number">360</item>
+                </item>
+            </argument>
+        </column>
+        <column name="ASDCNUM">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">ASDCNUM</item>
+                    <item name="sortOrder" xsi:type="number">370</item>
+                </item>
+            </argument>
+        </column>
+        <column name="CNTPAYM">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">CNTPAYM</item>
+                    <item name="sortOrder" xsi:type="number">380</item>
+                </item>
+            </argument>
+        </column>
+        <column name="TESTMODE">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">TESTMODE</item>
+                    <item name="sortOrder" xsi:type="number">390</item>
+                </item>
+            </argument>
+        </column>
+        <column name="increment_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Magento Increment Id</item>
+                    <item name="sortOrder" xsi:type="number">400</item>
+                </item>
+            </argument>
+        </column>
+        <column name="order_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Magento Order Id</item>
+                    <item name="sortOrder" xsi:type="number">410</item>
+                </item>
+            </argument>
+        </column>
+        <column name="customer_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Customer Id</item>
+                    <item name="sortOrder" xsi:type="number">420</item>
+                </item>
+            </argument>
+        </column>
+        <column name="sage_idcust">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Sage Customer Number</item>
+                    <item name="sortOrder" xsi:type="number">430</item>
+                </item>
+            </argument>
+        </column>
+        <column name="sage_nntrans_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Sage NNTRANS Id</item>
+                    <item name="sortOrder" xsi:type="number">440</item>
+                </item>
+            </argument>
+        </column>
+    </columns>
+</listing>

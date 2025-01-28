@@ -1,0 +1,68 @@
+<?php
+/**
+ * Copyright (C) EC Brands Corporation - All Rights Reserved
+ * Contact Licensing@ECInternet.com for use guidelines
+ */
+declare(strict_types=1);
+?>
+
+<?php /** @var \ECInternet\Paytelligence\Block\Adminhtml\Card\Index $block */ ?>
+<?php /** @var \Magento\Framework\Escaper $escaper */ ?>
+
+<?php /** @var \ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard\Collection $cards */?>
+<?php $cards = $block->getCards(); ?>
+<?php if ($cards !== null && count($cards->getItems())) { ?>
+    <div class="fieldset-wrapper customer-information">
+        <div class="fieldset-wrapper-title">
+            <span class="title"><?= $block->escapeHtml(__('Paytelligence Cards')) ?></span>
+        </div>
+
+        <table class="data-table admin__table-primary">
+            <thead>
+            <tr>
+                <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Card #')) ?></th>
+                <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Exp. Date')) ?></th>
+                <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Card Type')) ?></th>
+                <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Name on Card')) ?></th>
+                <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Billing Address')) ?></th>
+                <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Email')) ?></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php /** @var \ECInternet\Paytelligence\Model\PaytelligenceCard $card */?>
+            <?php foreach ($cards as $card) { ?>
+                <tr class="row">
+                    <td data-th="<?= $escaper->escapeHtml(__('Card Number')) ?>" class="col a-center">
+                        <?= $escaper->escapeHtml($card->getCardMask()) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml(__('Expiration Date')) ?>" class="col a-center">
+                        <?= $escaper->escapeHtml($card->getExpirationDisplay()) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml(__('Card Type')) ?>" class="col a-center">
+                        <?= $escaper->escapeHtml($card->getCardTypeName()) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml(__('Name on Card')) ?>" class="col a-center">
+                        <?= $escaper->escapeHtml($card->getCardholdersName()) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml(__('Billing Address')) ?>" class="col a-center">
+                        <?= $escaper->escapeHtml($card->getBillToAddressLine1()) ?>
+                        <?= $escaper->escapeHtml($card->getBillToAddressLine2()) ?>
+                        <br />
+                        <?= $escaper->escapeHtml($card->getBillToCity()) ?>,
+                        <?= $escaper->escapeHtml($card->getBillToProvinceState()) ?>
+                        <?= $escaper->escapeHtml($card->getBillToZipPostalCode()) ?>
+                        <?= $escaper->escapeHtml($card->getBillToCountry()) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml(__('Email')) ?>" class="col a-center">
+                        <?= $escaper->escapeHtml($card->getEmail()) ?>
+                    </td>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+    </div>
+<?php } else { ?>
+    <div class="message info empty">
+        <span><?= $escaper->escapeHtml(__('This customer does not have any cards.')) ?></span>
+    </div>
+<?php } ?>

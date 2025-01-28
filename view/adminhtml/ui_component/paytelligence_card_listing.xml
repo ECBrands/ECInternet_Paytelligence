@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">paytelligence_card_listing.paytelligence_card_listing_data_source</item>
+		</item>
+	</argument>
+
+	<settings>
+		<spinner>paytelligence_card_data_columns</spinner>
+		<deps>
+			<dep>paytelligence_card_listing.paytelligence_card_listing_data_source</dep>
+		</deps>
+	</settings>
+
+	<dataSource name="paytelligence_card_listing_data_source" component="Magento_Ui/js/grid/provider">
+		<settings>
+			<updateUrl path="mui/index/render" />
+		</settings>
+		<dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="paytelligence_card_listing_data_source">
+			<settings>
+				<requestFieldName>entity_id</requestFieldName>
+				<primaryFieldName>entity_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+
+	<listingToolbar name="listing_top">
+		<settings>
+			<sticky>true</sticky>
+		</settings>
+		<bookmark name="bookmarks" />
+		<columnsControls name="columns_controls" />
+		<filters name="listing_filters" />
+		<filterSearch name="fulltext" />
+		<paging name="listing_paging" />
+	</listingToolbar>
+
+	<columns name="paytelligence_card_data_columns">
+		<column name="entity_id" sortOrder="10">
+			<settings>
+				<filter>textRange</filter>
+				<dataType>text</dataType>
+				<label translate="true">Id</label>
+			</settings>
+		</column>
+		<column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date" sortOrder="20">
+			<settings>
+				<filter>dateRange</filter>
+				<dataType>date</dataType>
+				<label translate="true">Created At</label>
+			</settings>
+		</column>
+		<column name="updated_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date" sortOrder="30">
+			<settings>
+				<filter>dateRange</filter>
+				<dataType>date</dataType>
+				<label translate="true">Updated At</label>
+			</settings>
+		</column>
+		<column name="CARDID" sortOrder="40">
+			<settings>
+				<filter>text</filter>
+				<dataType>text</dataType>
+				<label translate="true">CARDID</label>
+			</settings>
+		</column>
+		<column name="AUDTDATE" sortOrder="50">
+			<settings>
+				<filter>text</filter>
+				<dataType>text</dataType>
+				<label translate="true">AUDTDATE</label>
+			</settings>
+		</column>
+		<column name="AUDTTIME" sortOrder="60">
+			<settings>
+				<filter>text</filter>
+				<dataType>text</dataType>
+				<label translate="true">AUDTTIME</label>
+			</settings>
+		</column>
+		<column name="AUDTUSER" sortOrder="70">
+			<settings>
+				<filter>text</filter>
+				<dataType>text</dataType>
+				<label translate="true">AUDTUSER</label>
+			</settings>
+		</column>
+		<column name="AUDTORG" sortOrder="80">
+			<settings>
+				<filter>text</filter>
+				<dataType>text</dataType>
+				<label translate="true">AUDTORG</label>
+			</settings>
+		</column>
+		<column name="MERCODE" sortOrder="90">
+			<settings>
+				<filter>text</filter>
+				<dataType>text</dataType>
+				<label translate="true">MERCODE</label>
+			</settings>
+		</column>
+		<column name="SHIPTO" sortOrder="100">
+			<settings>
+				<filter>text</filter>
+				<dataType>text</dataType>
+				<label translate="true">SHIPTO</label>
+			</settings>
+		</column>
+		<column name="CARDSTTE" sortOrder="110">
+			<settings>
+				<filter>text</filter>
+				<dataType>text</dataType>
+				<label translate="true">CARDSTTE</label>
+			</settings>
+		</column>
+		<column name="PROFILID" sortOrder="120">
+			<settings>
+				<filter>text</filter>
+				<dataType>text</dataType>
+				<label translate="true">PROFILID</label>
+			</settings>
+		</column>
+		<column name="CARDMASK" sortOrder="130">
+			<settings>
+				<filter>text</filter>
+				<dataType>text</dataType>
+				<label translate="true">CARDMASK</label>
+			</settings>
+		</column>
+		<column name="CUSTOMER" sortOrder="140">
+			<settings>
+				<filter>text</filter>
+				<dataType>text</dataType>
+				<label translate="true">CUSTOMER</label>
+			</settings>
+		</column>
+		<!-- TODO: Make this a SELECT -->
+		<column name="CARDTYPE" sortOrder="150">
+			<settings>
+				<filter>text</filter>
+				<dataType>text</dataType>
+				<label translate="true">CARDTYPE</label>
+			</settings>
+		</column>
+		<column name="CARDNAME" sortOrder="160">
+			<settings>
+				<filter>text</filter>
+				<dataType>text</dataType>
+				<label translate="true">CARDNAME</label>
+			</settings>
+		</column>
+		<column name="DRIVLIC" sortOrder="170">
+			<settings>
+				<filter>text</filter>
+				<dataType>text</dataType>
+				<label translate="true">DRIVLIC</label>
+			</settings>
+		</column>
+		<column name="IPADDR" sortOrder="180">
+			<settings>
+				<filter>text</filter>
+				<dataType>text</dataType>
+				<label translate="true">IPADDR</label>
+			</settings>
+		</column>
+		<column name="BILADDR1" sortOrder="190">
+			<settings>
+				<filter>text</filter>
+				<dataType>text</dataType>
+				<label translate="true">BILADDR1</label>
+			</settings>
+		</column>
+		<column name="BILADDR2" sortOrder="200">
+			<settings>
+				<filter>text</filter>
+				<dataType>text</dataType>
+				<label translate="true">BILADDR2</label>
+			</settings>
+		</column>
+		<column name="BILCITY" sortOrder="210">
+			<settings>
+				<filter>text</filter>
+				<dataType>text</dataType>
+				<label translate="true">BILCITY</label>
+			</settings>
+		</column>
+		<column name="BILPROV" sortOrder="220">
+			<settings>
+				<filter>text</filter>
+				<dataType>text</dataType>
+				<label translate="true">BILPROV</label>
+			</settings>
+		</column>
+		<column name="BILCTRY" sortOrder="230">
+			<settings>
+				<filter>text</filter>
+				<dataType>text</dataType>
+				<label translate="true">BILCTRY</label>
+			</settings>
+		</column>
+		<column name="BILPSTL" sortOrder="240">
+			<settings>
+				<filter>text</filter>
+				<dataType>text</dataType>
+				<label translate="true">BILPSTL</label>
+			</settings>
+		</column>
+		<column name="CNTPHONE" sortOrder="250">
+			<settings>
+				<filter>text</filter>
+				<dataType>text</dataType>
+				<label translate="true">CNTPHONE</label>
+			</settings>
+		</column>
+		<column name="EXPYEAR" sortOrder="260">
+			<settings>
+				<filter>text</filter>
+				<dataType>text</dataType>
+				<label translate="true">EXPYEAR</label>
+			</settings>
+		</column>
+		<column name="EXPMONTH" sortOrder="270">
+			<settings>
+				<filter>text</filter>
+				<dataType>text</dataType>
+				<label translate="true">EXPMONTH</label>
+			</settings>
+		</column>
+		<column name="COMMENT" sortOrder="270">
+			<settings>
+				<filter>text</filter>
+				<dataType>text</dataType>
+				<label translate="true">COMMENT</label>
+			</settings>
+		</column>
+		<column name="TRNSLMT" sortOrder="280">
+			<settings>
+				<filter>text</filter>
+				<dataType>text</dataType>
+				<label translate="true">TRNSLMT</label>
+			</settings>
+		</column>
+		<column name="CARDPWD" sortOrder="290">
+			<settings>
+				<filter>text</filter>
+				<dataType>text</dataType>
+				<label translate="true">CARDPWD</label>
+			</settings>
+		</column>
+		<column name="DFLTCARD" sortOrder="300">
+			<settings>
+				<filter>text</filter>
+				<dataType>text</dataType>
+				<label translate="true">DFLTCARD</label>
+			</settings>
+		</column>
+		<column name="AVS" sortOrder="310">
+			<settings>
+				<filter>text</filter>
+				<dataType>text</dataType>
+				<label translate="true">AVS</label>
+			</settings>
+		</column>
+		<column name="CVV" sortOrder="320">
+			<settings>
+				<filter>text</filter>
+				<dataType>text</dataType>
+				<label translate="true">CVV</label>
+			</settings>
+		</column>
+		<!-- TODO: Make this a SELECT -->
+		<column name="ISSTORED" sortOrder="330">
+			<settings>
+				<filter>text</filter>
+				<dataType>text</dataType>
+				<label translate="true">ISSTORED</label>
+			</settings>
+		</column>
+		<column name="EMAIL" sortOrder="340">
+			<settings>
+				<filter>text</filter>
+				<dataType>text</dataType>
+				<label translate="true">EMAIL</label>
+			</settings>
+		</column>
+		<column name="SWIPEOPT" sortOrder="350">
+			<settings>
+				<filter>text</filter>
+				<dataType>text</dataType>
+				<label translate="true">SWIPEOPT</label>
+			</settings>
+		</column>
+		<column name="APROFILEID" sortOrder="360">
+			<settings>
+				<filter>text</filter>
+				<dataType>text</dataType>
+				<label translate="true">APROFILEID</label>
+			</settings>
+		</column>
+		<column name="CCNETWORK" sortOrder="370">
+			<settings>
+				<filter>text</filter>
+				<dataType>text</dataType>
+				<label translate="true">CCNETWORK</label>
+			</settings>
+		</column>
+		<column name="last_order_id" sortOrder="380">
+			<settings>
+				<filter>text</filter>
+				<dataType>text</dataType>
+				<label translate="true">Last Order Id</label>
+			</settings>
+		</column>
+	</columns>
+</listing>

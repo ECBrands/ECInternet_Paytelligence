@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+	<acl>
+		<resources>
+			<resource id="Magento_Backend::admin">
+				<resource id="ECInternet_Base::base">
+					<resource id="ECInternet_Paytelligence::menu" title="ECInternet Paytelligence" sortOrder="51">
+						<resource id="ECInternet_Paytelligence::settings" title="Settings" sortOrder="1" />
+						<resource id="ECInternet_Paytelligence::cards" title="Cards" sortOrder="2" />
+						<resource id="ECInternet_Paytelligence::transactions" title="Transactions" sortOrder="3" />
+					</resource>
+				</resource>
+			</resource>
+		</resources>
+	</acl>
+</config>

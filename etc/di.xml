@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<!-- Card -->
+	<preference for="ECInternet\Paytelligence\Api\PaytelligenceCardRepositoryInterface"
+	            type="ECInternet\Paytelligence\Model\PaytelligenceCardRepository" />
+	<preference for="ECInternet\Paytelligence\Api\Data\PaytelligenceCardInterface"
+	            type="ECInternet\Paytelligence\Model\PaytelligenceCard" />
+	<preference for="ECInternet\Paytelligence\Api\Data\CardSearchResultsInterface"
+	            type="ECInternet\Paytelligence\Model\CardSearchResults" />
+	<preference for="ECInternet\Paytelligence\Api\Data\SetCardIdRequestInterface"
+	            type="ECInternet\Paytelligence\Model\SetCardIdRequest" />
+
+	<!-- Log -->
+	<preference for="ECInternet\Paytelligence\Api\PaytelligenceLogRepositoryInterface"
+	            type="ECInternet\Paytelligence\Model\PaytelligenceLogRepository" />
+	<preference for="ECInternet\Paytelligence\Api\Data\PaytelligenceLogInterface"
+	            type="ECInternet\Paytelligence\Model\PaytelligenceLog" />
+
+	<!-- Trans -->
+	<preference for="ECInternet\Paytelligence\Api\PaytelligenceTransRepositoryInterface"
+	            type="ECInternet\Paytelligence\Model\PaytelligenceTransRepository" />
+	<preference for="ECInternet\Paytelligence\Api\Data\PaytelligenceTransInterface"
+	            type="ECInternet\Paytelligence\Model\PaytelligenceTrans" />
+	<preference for="ECInternet\Paytelligence\Api\Data\TransactionSearchResultsInterface"
+	            type="ECInternet\Paytelligence\Model\TransactionSearchResults" />
+
+	<!-- Gateway pool -->
+	<preference for="ECInternet\Paytelligence\Api\PaymentGatewayPoolInterface"
+	            type="ECInternet\Paytelligence\Model\PaymentGatewayPool" />
+
+	<!-- Custom Logger -->
+	<type name="ECInternet\Paytelligence\Logger\Logger">
+		<arguments>
+			<argument name="name" xsi:type="string">Paytelligence</argument>
+			<argument name="handlers" xsi:type="array">
+				<item name="system" xsi:type="object">ECInternet\Paytelligence\Logger\Handler</item>
+			</argument>
+		</arguments>
+	</type>
+
+	<!-- Define grid data sources and matching Virtual Types -->
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="paytelligence_card_listing_data_source" xsi:type="string">ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard\Grid\Collection</item>
+				<item name="paytelligence_log_listing_data_source" xsi:type="string">ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceLog\Grid\Collection</item>
+				<item name="paytelligence_trans_listing_data_source" xsi:type="string">ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceTrans\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+	<virtualType name="ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard\Grid\Collection"
+	             type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">ecinternet_paytelligence_card</argument>
+			<argument name="eventPrefix" xsi:type="string">ecinternet_paytelligence_card</argument>
+			<argument name="eventObject" xsi:type="string">paytelligence_card_collection</argument>
+			<argument name="resourceModel" xsi:type="string">ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard</argument>
+		</arguments>
+	</virtualType>
+	<virtualType name="ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceLog\Grid\Collection"
+	             type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">ecinternet_paytelligence_log</argument>
+			<argument name="eventPrefix" xsi:type="string">ecinternet_paytelligence_log</argument>
+			<argument name="eventObject" xsi:type="string">paytelligence_log_collection</argument>
+			<argument name="resourceModel" xsi:type="string">ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceLog</argument>
+		</arguments>
+	</virtualType>
+	<virtualType name="ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceTrans\Grid\Collection"
+	             type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">ecinternet_paytelligence_trans</argument>
+			<argument name="eventPrefix" xsi:type="string">ecinternet_paytelligence_trans</argument>
+			<argument name="eventObject" xsi:type="string">paytelligence_trans_collection</argument>
+			<argument name="resourceModel" xsi:type="string">ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceTrans</argument>
+		</arguments>
+	</virtualType>
+</config>
