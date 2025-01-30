@@ -62,5 +62,11 @@ interface PaymentGatewayInterface
      */
     public function updateVaultCard(PaytelligenceCardInterface $card);
 
+    /**
+     * @param array $requestData
+     * @param array $response
+     *
+     * @return \ECInternet\Paytelligence\Api\Data\PaytelligenceCardInterface
+     */
     public function saveCard(array $requestData, array $response);
 }
