@@ -20,7 +20,7 @@ use Exception;
  */
 class Removecard extends Index implements HttpPostActionInterface
 {
-    const PROFILE_ID_PARAMETER = 'profil_id';
+    private const PROFILE_ID_PARAMETER = 'profil_id';
 
     /**
      * Execute 'Removecard' action - Update card state to 'Deleted'

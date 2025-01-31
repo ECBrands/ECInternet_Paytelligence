@@ -13,8 +13,8 @@ use Magento\Framework\View\Element\Template\Context;
 use Magento\Framework\View\Element\Template;
 use Magento\Payment\Model\CcConfig;
 use ECInternet\Paytelligence\Api\PaymentGatewayPoolInterface;
-use ECInternet\Paytelligence\Helper\Data;
 use ECInternet\Paytelligence\Logger\Logger;
+use ECInternet\Paytelligence\Model\Config;
 
 /**
  * New Card Block
@@ -37,14 +37,14 @@ class NewAction extends Template
     private $paymentGatewayPool;
 
     /**
-     * @var \ECInternet\Paytelligence\Helper\Data
-     */
-    private $helper;
-
-    /**
      * @var \ECInternet\Paytelligence\Logger\Logger
      */
     private $logger;
+
+    /**
+     * @var \ECInternet\Paytelligence\Model\Config
+     */
+    private $config;
 
     /**
      * NewAction constructor.
@@ -53,8 +53,8 @@ class NewAction extends Template
      * @param \Magento\Directory\Helper\Data                            $directoryHelper
      * @param \Magento\Payment\Model\CcConfig                           $ccConfig
      * @param \ECInternet\Paytelligence\Api\PaymentGatewayPoolInterface $paymentGatewayPool
-     * @param \ECInternet\Paytelligence\Helper\Data                     $helper
      * @param \ECInternet\Paytelligence\Logger\Logger                   $logger
+     * @param \ECInternet\Paytelligence\Model\Config                    $config
      * @param array                                                     $data
      */
     public function __construct(
@@ -62,8 +62,8 @@ class NewAction extends Template
         DirectoryHelper $directoryHelper,
         CcConfig $ccConfig,
         PaymentGatewayPoolInterface $paymentGatewayPool,
-        Data $helper,
         Logger $logger,
+        Config $config,
         array $data = []
     ) {
         parent::__construct($context, $data);
@@ -71,8 +71,8 @@ class NewAction extends Template
         $this->directoryHelper    = $directoryHelper;
         $this->ccConfig           = $ccConfig;
         $this->paymentGatewayPool = $paymentGatewayPool;
-        $this->helper             = $helper;
         $this->logger             = $logger;
+        $this->config             = $config;
     }
 
     public function getCcMonths()
@@ -98,7 +98,7 @@ class NewAction extends Template
 
     public function getAllowedCountries()
     {
-        if ($paymentGatewayCode = $this->helper->getAddCardPaymentGateway()) {
+        if ($paymentGatewayCode = $this->config->getAddCardPaymentGateway()) {
             if ($paymentGateway = $this->getPaymentGateway($paymentGatewayCode)) {
                 return $paymentGateway->getAllowedCountries();
             } else {

@@ -29,14 +29,10 @@ use ECInternet\Paytelligence\Logger\Logger;
  */
 class Data extends AbstractHelper
 {
-    const CONFIG_PATH_ENABLED                 = 'paytelligence/general/enable';
-
-    const CONFIG_PATH_ADD_CARD_PAYMENT_METHOD = 'paytelligence/card_maintenance/new_card_payment_method';
-
     /**
      * @var \Magento\Directory\Model\ResourceModel\Region\CollectionFactory
      */
-    private $_regionCollectionFactory;
+    private $regionCollectionFactory;
 
     /**
      * @var \ECInternet\Paytelligence\Helper\Customer
@@ -51,12 +47,12 @@ class Data extends AbstractHelper
     /**
      * @var \ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard\CollectionFactory
      */
-    private $_paytelligenceCardCollectionFactory;
+    private $paytelligenceCardCollectionFactory;
 
     /**
      * @var \ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceTrans\CollectionFactory
      */
-    private $_paytelligenceTransCollectionFactory;
+    private $paytelligenceTransCollectionFactory;
 
     /**
      * Data constructor.
@@ -78,29 +74,11 @@ class Data extends AbstractHelper
     ) {
         parent::__construct($context);
 
-        $this->_regionCollectionFactory             = $regionCollectionFactory;
-        $this->customerHelper                       = $customerHelper;
+        $this->regionCollectionFactory = $regionCollectionFactory;
+        $this->customerHelper          = $customerHelper;
         $this->logger                               = $logger;
-        $this->_paytelligenceCardCollectionFactory  = $cardCollectionFactory;
-        $this->_paytelligenceTransCollectionFactory = $transCollectionFactory;
-    }
-
-    /**
-     * Is module enabled?
-     *
-     * @return bool
-     */
-    public function isModuleEnabled()
-    {
-        return $this->scopeConfig->isSetFlag(self::CONFIG_PATH_ENABLED);
-    }
-
-    /**
-     * @return string
-     */
-    public function getAddCardPaymentGateway()
-    {
-        return (string)$this->scopeConfig->getValue(self::CONFIG_PATH_ADD_CARD_PAYMENT_METHOD);
+        $this->paytelligenceCardCollectionFactory  = $cardCollectionFactory;
+        $this->paytelligenceTransCollectionFactory = $transCollectionFactory;
     }
 
     /**
@@ -187,7 +165,7 @@ class Data extends AbstractHelper
         $customerNumbers = $this->getCustomerNumbers($customer);
         $this->log('hasPreviousTransactions()', ['customerNumbers' => $customerNumbers]);
 
-        $collection = $this->_paytelligenceTransCollectionFactory->create()
+        $collection = $this->paytelligenceTransCollectionFactory->create()
             ->addFieldToFilter(PaytelligenceTrans::COLUMN_CUSTOMER, ['in' => implode(',', $customerNumbers)])
             ->addFieldToFilter(PaytelligenceTrans::COLUMN_CARDNUM, ['eq' => $cardMask]);
 
@@ -272,7 +250,7 @@ class Data extends AbstractHelper
             'expirationYear'  => $expirationYear
         ]);
 
-        $cardCollection = $this->_paytelligenceCardCollectionFactory->create()
+        $cardCollection = $this->paytelligenceCardCollectionFactory->create()
             ->addFieldToFilter(PaytelligenceCard::COLUMN_CARDSTTE, ['eq' => $cardState])
             ->addFieldToFilter(PaytelligenceCard::COLUMN_ISSTORED, ['eq' => $isStored])
             ->addFieldToFilter(PaytelligenceCard::COLUMN_CARDMASK, ['like' => '%' . $last4digits])
@@ -298,7 +276,7 @@ class Data extends AbstractHelper
         $this->log('getRegionCode()', ['country' => $country, 'regionId' => $regionId]);
 
         /** @var \Magento\Directory\Model\ResourceModel\Region\Collection $regionCollection */
-        $regionCollection = $this->_regionCollectionFactory->create()
+        $regionCollection = $this->regionCollectionFactory->create()
             ->addCountryFilter($country)
             ->addFieldToFilter('main_table.region_id', $regionId);
 
@@ -326,7 +304,7 @@ class Data extends AbstractHelper
 
         if (!empty($country) && !empty($regionCode)) {
             /** @var \Magento\Directory\Model\ResourceModel\Region\Collection $regionCollection */
-            $regionCollection = $this->_regionCollectionFactory->create()
+            $regionCollection = $this->regionCollectionFactory->create()
                 ->addCountryFilter($country)
                 ->addRegionCodeFilter($regionCode);
 
@@ -353,7 +331,7 @@ class Data extends AbstractHelper
         $this->log('getStoredCardCollectionByCustomerNumbers()', ['customerNumbers' => $customerNumbers]);
 
         if (count($customerNumbers) > 0) {
-            return $this->_paytelligenceCardCollectionFactory->create()
+            return $this->paytelligenceCardCollectionFactory->create()
                 ->addFieldToFilter(PaytelligenceCard::COLUMN_CARDSTTE, ['eq' => 1])
                 ->addFieldToFilter(PaytelligenceCard::COLUMN_ISSTORED, ['eq' => 1])
                 ->addFieldToFilter(PaytelligenceCard::COLUMN_CUSTOMER, ['in' => implode(',', $customerNumbers)]);

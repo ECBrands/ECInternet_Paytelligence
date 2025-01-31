@@ -23,8 +23,6 @@ use ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard\CollectionFac
 use Exception;
 
 /**
- * Paytelligence card repository
- *
  * @SuppressWarnings(PHPMD.LongVariable)
  * @SuppressWarnings(PHPMD.ShortVariable)
  */
@@ -79,8 +77,10 @@ class PaytelligenceCardRepository implements PaytelligenceCardRepositoryInterfac
     }
 
     /**
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @inheritDoc
+     *
      * @throws \Magento\Framework\Exception\LocalizedException
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
     public function save(
         PaytelligenceCardInterface $card
@@ -234,7 +234,6 @@ class PaytelligenceCardRepository implements PaytelligenceCardRepositoryInterfac
         /** @var \ECInternet\Paytelligence\Api\Data\CardSearchResultsInterface $searchResults */
         $searchResults = $this->cardSearchResultsFactory->create();
 
-        /** @noinspection PhpExpressionResultUnusedInspection */
         $searchResults->setSearchCriteria($searchCriteria);
         $searchResults->setTotalCount($collection->getSize());
 

@@ -9,21 +9,21 @@ namespace ECInternet\Paytelligence\Api\Data;
 
 interface PaytelligenceLogInterface
 {
-    const COLUMN_ID              = 'entity_id';
+    public const COLUMN_ID              = 'entity_id';
 
-    const COLUMN_CREATED_AT      = 'created_at';
+    public const COLUMN_CREATED_AT      = 'created_at';
 
-    const COLUMN_UPDATED_AT      = 'updated_at';
+    public const COLUMN_UPDATED_AT      = 'updated_at';
 
-    const COLUMN_ORDER_NUMBER    = 'order_number';
+    public const COLUMN_ORDER_NUMBER    = 'order_number';
 
-    const COLUMN_PAYMENT_GATEWAY = 'payment_gateway';
+    public const COLUMN_PAYMENT_GATEWAY = 'payment_gateway';
 
-    const COLUMN_AREA_CODE       = 'area_code';
+    public const COLUMN_AREA_CODE       = 'area_code';
 
-    const COLUMN_LOG_TYPE        = 'log_type';
+    public const COLUMN_LOG_TYPE        = 'log_type';
 
-    const COLUMN_VALUE           = 'value';
+    public const COLUMN_VALUE           = 'value';
 
     /**
      * @return mixed

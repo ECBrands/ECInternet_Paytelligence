@@ -28,7 +28,7 @@ use ECInternet\Paytelligence\Api\Data\PaytelligenceCardInterface;
  */
 class PaytelligenceCard extends AbstractExtensibleModel implements IdentityInterface, PaytelligenceCardInterface
 {
-    const CACHE_TAG = 'paytelligence_card';
+    private const CACHE_TAG = 'paytelligence_card';
 
     protected $_cacheTag = self::CACHE_TAG;
 

@@ -9,9 +9,9 @@ namespace ECInternet\Paytelligence\Api\Data;
 
 interface SetCardIdRequestInterface
 {
-    const COLUMN_ID     = PaytelligenceCardInterface::COLUMN_ID;
+    public const COLUMN_ID     = PaytelligenceCardInterface::COLUMN_ID;
 
-    const COLUMN_CARDID = PaytelligenceCardInterface::COLUMN_CARDID;
+    public const COLUMN_CARDID = PaytelligenceCardInterface::COLUMN_CARDID;
 
     /**
      * @return mixed

@@ -17,7 +17,7 @@ use Exception;
  */
 class Customer
 {
-    const CUSTOMER_NUMBER_ATTRIBUTE = 'customer_number';
+    private const CUSTOMER_NUMBER_ATTRIBUTE = 'customer_number';
 
     /**
      * @var \Magento\Customer\Api\CustomerRepositoryInterface
@@ -52,7 +52,6 @@ class Customer
         }
 
         return null;
-
     }
 
     /**
@@ -65,6 +64,7 @@ class Customer
         try {
             return $this->customerRepository->getById($customerId);
         } catch (Exception $e) {
+            error_log($e->getMessage());
         }
 
         return null;

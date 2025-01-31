@@ -16,8 +16,8 @@ use Magento\Framework\View\Result\PageFactory;
 use ECInternet\Paytelligence\Api\PaymentGatewayPoolInterface;
 use ECInternet\Paytelligence\Api\PaytelligenceCardRepositoryInterface;
 use ECInternet\Paytelligence\Helper\Customer as CustomerHelper;
-use ECInternet\Paytelligence\Helper\Data;
 use ECInternet\Paytelligence\Logger\Logger;
+use ECInternet\Paytelligence\Model\Config;
 use ECInternet\Paytelligence\Model\PaytelligenceCardFactory;
 use Exception;
 
@@ -70,14 +70,14 @@ abstract class Card
     protected $customerHelper;
 
     /**
-     * @var \ECInternet\Paytelligence\Helper\Data
-     */
-    protected $helper;
-
-    /**
      * @var \ECInternet\Paytelligence\Logger\Logger
      */
     protected $logger;
+
+    /**
+     * @var \ECInternet\Paytelligence\Model\Config
+     */
+    protected $config;
 
     /**
      * @var \ECInternet\Paytelligence\Model\PaytelligenceCardFactory
@@ -95,8 +95,8 @@ abstract class Card
      * @param \ECInternet\Paytelligence\Api\PaymentGatewayPoolInterface          $paymentGatewayPool
      * @param \ECInternet\Paytelligence\Api\PaytelligenceCardRepositoryInterface $cardRepository
      * @param \ECInternet\Paytelligence\Helper\Customer                          $customerHelper
-     * @param \ECInternet\Paytelligence\Helper\Data                              $helper
      * @param \ECInternet\Paytelligence\Logger\Logger                            $logger
+     * @param \ECInternet\Paytelligence\Model\Config                             $config
      * @param \ECInternet\Paytelligence\Model\PaytelligenceCardFactory           $cardFactory
      */
     public function __construct(
@@ -108,8 +108,8 @@ abstract class Card
         PaymentGatewayPoolInterface $paymentGatewayPool,
         PaytelligenceCardRepositoryInterface $cardRepository,
         CustomerHelper $customerHelper,
-        Data $helper,
         Logger $logger,
+        Config $config,
         PaytelligenceCardFactory $cardFactory
     ) {
         $this->request               = $request;
@@ -120,8 +120,8 @@ abstract class Card
         $this->paymentGatewayPool    = $paymentGatewayPool;
         $this->cardRepository        = $cardRepository;
         $this->logger                = $logger;
+        $this->config                = $config;
         $this->customerHelper        = $customerHelper;
-        $this->helper                = $helper;
         $this->cardFactory           = $cardFactory;
     }
 

@@ -14,7 +14,7 @@ declare(strict_types=1);
 <?php if ($cards !== null && count($cards->getItems())) { ?>
     <div class="fieldset-wrapper customer-information">
         <div class="fieldset-wrapper-title">
-            <span class="title"><?= $block->escapeHtml(__('Paytelligence Cards')) ?></span>
+            <span class="title"><?= $escaper->escapeHtml(__('Paytelligence Cards')) ?></span>
         </div>
 
         <table class="data-table admin__table-primary">
@@ -32,19 +32,19 @@ declare(strict_types=1);
             <?php /** @var \ECInternet\Paytelligence\Model\PaytelligenceCard $card */?>
             <?php foreach ($cards as $card) { ?>
                 <tr class="row">
-                    <td data-th="<?= $escaper->escapeHtml(__('Card Number')) ?>" class="col a-center">
+                    <td data-th="<?= $escaper->escapeHtmlAttr(__('Card Number')) ?>" class="col a-center">
                         <?= $escaper->escapeHtml($card->getCardMask()) ?>
                     </td>
-                    <td data-th="<?= $escaper->escapeHtml(__('Expiration Date')) ?>" class="col a-center">
+                    <td data-th="<?= $escaper->escapeHtmlAttr(__('Expiration Date')) ?>" class="col a-center">
                         <?= $escaper->escapeHtml($card->getExpirationDisplay()) ?>
                     </td>
-                    <td data-th="<?= $escaper->escapeHtml(__('Card Type')) ?>" class="col a-center">
+                    <td data-th="<?= $escaper->escapeHtmlAttr(__('Card Type')) ?>" class="col a-center">
                         <?= $escaper->escapeHtml($card->getCardTypeName()) ?>
                     </td>
-                    <td data-th="<?= $escaper->escapeHtml(__('Name on Card')) ?>" class="col a-center">
+                    <td data-th="<?= $escaper->escapeHtmlAttr(__('Name on Card')) ?>" class="col a-center">
                         <?= $escaper->escapeHtml($card->getCardholdersName()) ?>
                     </td>
-                    <td data-th="<?= $escaper->escapeHtml(__('Billing Address')) ?>" class="col a-center">
+                    <td data-th="<?= $escaper->escapeHtmlAttr(__('Billing Address')) ?>" class="col a-center">
                         <?= $escaper->escapeHtml($card->getBillToAddressLine1()) ?>
                         <?= $escaper->escapeHtml($card->getBillToAddressLine2()) ?>
                         <br />
@@ -53,7 +53,7 @@ declare(strict_types=1);
                         <?= $escaper->escapeHtml($card->getBillToZipPostalCode()) ?>
                         <?= $escaper->escapeHtml($card->getBillToCountry()) ?>
                     </td>
-                    <td data-th="<?= $escaper->escapeHtml(__('Email')) ?>" class="col a-center">
+                    <td data-th="<?= $escaper->escapeHtmlAttr(__('Email')) ?>" class="col a-center">
                         <?= $escaper->escapeHtml($card->getEmail()) ?>
                     </td>
                 </tr>

@@ -12,147 +12,147 @@ namespace ECInternet\Paytelligence\Api\Data;
  */
 interface PaytelligenceTransInterface
 {
-    const COLUMN_ID                              = 'entity_id';
+    public const COLUMN_ID                              = 'entity_id';
 
     /**
      * Points to online NNCARD record used on order - ecinternet_paytelligence_card.entity_id
      */
-    const COLUMN_PARENT_CARD_ID                  = 'parent_card_id';
+    public const COLUMN_PARENT_CARD_ID                  = 'parent_card_id';
 
-    const COLUMN_CREATED_AT                      = 'created_at';
+    public const COLUMN_CREATED_AT                      = 'created_at';
 
-    const COLUMN_UPDATED_AT                      = 'updated_at';
+    public const COLUMN_UPDATED_AT                      = 'updated_at';
 
-    const COLUMN_TRNSNUM                         = 'TRNSNUM';
+    public const COLUMN_TRNSNUM                         = 'TRNSNUM';
 
-    const COLUMN_CARDID                          = 'CARDID';
+    public const COLUMN_CARDID                          = 'CARDID';
 
-    const COLUMN_CARDNUM                         = 'CARDNUM';
+    public const COLUMN_CARDNUM                         = 'CARDNUM';
 
-    const COLUMN_MERCODE                         = 'MERCODE';
+    public const COLUMN_MERCODE                         = 'MERCODE';
 
-    const COLUMN_PARENTID                        = 'PARENTID';
+    public const COLUMN_PARENTID                        = 'PARENTID';
 
-    const COLUMN_TRNSSRC                         = 'TRNSSRC';
+    public const COLUMN_TRNSSRC                         = 'TRNSSRC';
 
-    const COLUMN_AUTHED                          = 'AUTHED';
+    public const COLUMN_AUTHED                          = 'AUTHED';
 
-    const COLUMN_TRNSTYPE                        = 'TRNSTYPE';
+    public const COLUMN_TRNSTYPE                        = 'TRNSTYPE';
 
-    const COLUMN_TRNSSTTE                        = 'TRNSSTTE';
+    public const COLUMN_TRNSSTTE                        = 'TRNSSTTE';
 
-    const COLUMN_TRNSDATE                        = 'TRNSDATE';
+    public const COLUMN_TRNSDATE                        = 'TRNSDATE';
 
-    const COLUMN_TRNSTIME                        = 'TRNSTIME';
+    public const COLUMN_TRNSTIME                        = 'TRNSTIME';
 
-    const COLUMN_DOCCURR                         = 'DOCCURR';
+    public const COLUMN_DOCCURR                         = 'DOCCURR';
 
-    const COLUMN_DOCAMT                          = 'DOCAMT';
+    public const COLUMN_DOCAMT                          = 'DOCAMT';
 
-    const COLUMN_TRNSCURR                        = 'TRNSCURR';
+    public const COLUMN_TRNSCURR                        = 'TRNSCURR';
 
-    const COLUMN_TRNSAMT                         = 'TRNSAMT';
+    public const COLUMN_TRNSAMT                         = 'TRNSAMT';
 
-    const COLUMN_DISCAMT                         = 'DISCAMT';
+    public const COLUMN_DISCAMT                         = 'DISCAMT';
 
-    const COLUMN_CONV                            = 'CONV';
+    public const COLUMN_CONV                            = 'CONV';
 
-    const COLUMN_RATEOP                          = 'RATEOP';
+    public const COLUMN_RATEOP                          = 'RATEOP';
 
-    const COLUMN_AUTHAMT                         = 'AUTHAMT';
+    public const COLUMN_AUTHAMT                         = 'AUTHAMT';
 
-    const COLUMN_CAPAMT                          = 'CAPAMT';
+    public const COLUMN_CAPAMT                          = 'CAPAMT';
 
-    const COLUMN_REFAMT                          = 'REFAMT';
+    public const COLUMN_REFAMT                          = 'REFAMT';
 
-    const COLUMN_ADDCHRG                         = 'ADDCHRG';
+    public const COLUMN_ADDCHRG                         = 'ADDCHRG';
 
-    const COLUMN_ORDERNUM                        = 'ORDERNUM';
+    public const COLUMN_ORDERNUM                        = 'ORDERNUM';
 
-    const COLUMN_PONUM                           = 'PONUM';
+    public const COLUMN_PONUM                           = 'PONUM';
 
-    const COLUMN_DOCNUM                          = 'DOCNUM';
+    public const COLUMN_DOCNUM                          = 'DOCNUM';
 
-    const COLUMN_DOCTYPE                         = 'DOCTYPE';
+    public const COLUMN_DOCTYPE                         = 'DOCTYPE';
 
-    const COLUMN_CUSTOMER                        = 'CUSTOMER';
+    public const COLUMN_CUSTOMER                        = 'CUSTOMER';
 
-    const COLUMN_LOCATION                        = 'LOCATION';
+    public const COLUMN_LOCATION                        = 'LOCATION';
 
-    const COLUMN_GWTRNSID                        = 'GWTRNSID';
+    public const COLUMN_GWTRNSID                        = 'GWTRNSID';
 
-    const COLUMN_GWREFCDE                        = 'GWREFCDE';
+    public const COLUMN_GWREFCDE                        = 'GWREFCDE';
 
-    const COLUMN_GWORDRID                        = 'GWORDRID';
+    public const COLUMN_GWORDRID                        = 'GWORDRID';
 
-    const COLUMN_TRNSCMT                         = 'TRNSCMT';
+    public const COLUMN_TRNSCMT                         = 'TRNSCMT';
 
-    const COLUMN_TRNSRESD                        = 'TRNSRESD';
+    public const COLUMN_TRNSRESD                        = 'TRNSRESD';
 
-    const COLUMN_GLACCTNO                        = 'GLACCTNO';
+    public const COLUMN_GLACCTNO                        = 'GLACCTNO';
 
-    const COLUMN_ARBNUM                          = 'ARBNUM';
+    public const COLUMN_ARBNUM                          = 'ARBNUM';
 
-    const COLUMN_ARBENUM                         = 'ARBENUM';
+    public const COLUMN_ARBENUM                         = 'ARBENUM';
 
-    const COLUMN_ASDCTYPE                        = 'ASDCTYPE';
+    public const COLUMN_ASDCTYPE                        = 'ASDCTYPE';
 
-    const COLUMN_ASDCNUM                         = 'ASDCNUM';
+    public const COLUMN_ASDCNUM                         = 'ASDCNUM';
 
-    const COLUMN_CNTPAYM                         = 'CNTPAYM';
+    public const COLUMN_CNTPAYM                         = 'CNTPAYM';
 
-    const COLUMN_TESTMODE                        = 'TESTMODE';
+    public const COLUMN_TESTMODE                        = 'TESTMODE';
 
     /**
      * Magento order increment id
      */
-    const COLUMN_INCREMENT_ID                    = 'increment_id';
+    public const COLUMN_INCREMENT_ID                    = 'increment_id';
 
     /**
      * Magento order id
      */
-    const COLUMN_ORDER_ID                        = 'order_id';
+    public const COLUMN_ORDER_ID                        = 'order_id';
 
     /**
      * Magento customer id
      */
-    const COLUMN_CUSTOMER_ID                     = 'customer_id';
+    public const COLUMN_CUSTOMER_ID                     = 'customer_id';
 
-    const COLUMN_PARENT_TRANSACTION_ID           = 'parent_transaction_id';
+    public const COLUMN_PARENT_TRANSACTION_ID           = 'parent_transaction_id';
 
-    const COLUMN_AREA_CODE                       = 'area_code';
+    public const COLUMN_AREA_CODE                       = 'area_code';
 
     /**
      * Sage customer number
      */
-    const COLUMN_SAGE_IDCUST                     = 'sage_idcust';
+    public const COLUMN_SAGE_IDCUST                     = 'sage_idcust';
 
     /**
      * Sage transaction id
      */
-    const COLUMN_SAGE_NNTRANS_ID                 = 'sage_nntrans_id';
+    public const COLUMN_SAGE_NNTRANS_ID                 = 'sage_nntrans_id';
 
-    const TRANSACTION_SOURCE_IMPORTED            = 9;
+    public const TRANSACTION_SOURCE_IMPORTED            = 9;
 
-    const TRANSACTION_TYPE_ADD_PROFILE           = 1;
+    public const TRANSACTION_TYPE_ADD_PROFILE           = 1;
 
-    const TRANSACTION_TYPE_UPDATE_PROFILE        = 2;
+    public const TRANSACTION_TYPE_UPDATE_PROFILE        = 2;
 
-    const TRANSACTION_TYPE_AUTHORIZE             = 10;
+    public const TRANSACTION_TYPE_AUTHORIZE             = 10;
 
-    const TRANSACTION_TYPE_SALE                  = 12;
+    public const TRANSACTION_TYPE_SALE                  = 12;
 
-    const TRANSACTION_STATE_ENTERED              = 2;
+    public const TRANSACTION_STATE_ENTERED              = 2;
 
-    const TRANSACTION_STATE_TRANSMITTED          = 3;
+    public const TRANSACTION_STATE_TRANSMITTED          = 3;
 
-    const DOCUMENT_TYPE_NONE                     = 0;
+    public const DOCUMENT_TYPE_NONE                     = 0;
 
-    const DOCUMENT_TYPE_ORDER                    = 3;
+    public const DOCUMENT_TYPE_ORDER                    = 3;
 
-    const ASSIGNED_DOCUMENT_NUMBER_NONE          = 0;
+    public const ASSIGNED_DOCUMENT_NUMBER_NONE          = 0;
 
-    const AR_BATCH_NUMBER_STATUS_NOT_YET_BATCHED = 0;
+    public const AR_BATCH_NUMBER_STATUS_NOT_YET_BATCHED = 0;
 
     /**
      * @return mixed

@@ -19,7 +19,7 @@ use ECInternet\Paytelligence\Api\Data\PaytelligenceTransInterface;
  */
 class PaytelligenceTrans extends AbstractModel implements IdentityInterface, PaytelligenceTransInterface
 {
-    const CACHE_TAG = 'paytelligence_trans';
+    private const CACHE_TAG = 'paytelligence_trans';
 
     protected $_cacheTag = self::CACHE_TAG;
 

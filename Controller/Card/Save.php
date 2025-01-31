@@ -200,7 +200,7 @@ class Save extends Card implements HttpPostActionInterface
 
     protected function getAddCardPaymentGatewayName()
     {
-        return $this->helper->getAddCardPaymentGateway();
+        return $this->config->getAddCardPaymentGateway();
     }
 
     protected function isCardNew($data)

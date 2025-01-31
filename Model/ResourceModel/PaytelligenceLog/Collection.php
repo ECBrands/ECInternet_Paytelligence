@@ -20,15 +20,11 @@ class Collection extends AbstractCollection
     protected $_idFieldName = 'entity_id';
 
     /**
-     * Event prefix
-     *
      * @var string
      */
     protected $_eventPrefix = 'paytelligence_paytelligence_log_collection';
 
     /**
-     * Event object
-     *
      * @var string
      */
     protected $_eventObject = 'paytelligence_log_collection';

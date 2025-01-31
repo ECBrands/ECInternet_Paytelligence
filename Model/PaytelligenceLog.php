@@ -21,7 +21,7 @@ use ECInternet\Paytelligence\Api\Data\PaytelligenceLogInterface;
  */
 class PaytelligenceLog extends AbstractModel implements IdentityInterface, PaytelligenceLogInterface
 {
-    const CACHE_TAG = 'paytelligence_log';
+    private const CACHE_TAG = 'paytelligence_log';
 
     protected $_cacheTag = self::CACHE_TAG;
 

@@ -14,107 +14,107 @@ use Magento\Framework\Api\ExtensibleDataInterface;
  */
 interface PaytelligenceCardInterface extends ExtensibleDataInterface
 {
-    const COLUMN_ID                    = 'entity_id';
+    public const COLUMN_ID                    = 'entity_id';
 
-    const COLUMN_CREATED_AT            = 'created_at';
+    public const COLUMN_CREATED_AT            = 'created_at';
 
-    const COLUMN_UPDATED_AT            = 'updated_at';
+    public const COLUMN_UPDATED_AT            = 'updated_at';
 
-    const COLUMN_CARDID                = 'CARDID';
+    public const COLUMN_CARDID                = 'CARDID';
 
-    const COLUMN_AUDTDATE              = 'AUDTDATE';
+    public const COLUMN_AUDTDATE              = 'AUDTDATE';
 
-    const COLUMN_AUDTTIME              = 'AUDTTIME';
+    public const COLUMN_AUDTTIME              = 'AUDTTIME';
 
-    const COLUMN_AUDTUSER              = 'AUDTUSER';
+    public const COLUMN_AUDTUSER              = 'AUDTUSER';
 
-    const COLUMN_AUDTORG               = 'AUDTORG';
+    public const COLUMN_AUDTORG               = 'AUDTORG';
 
-    const COLUMN_MERCODE               = 'MERCODE';
+    public const COLUMN_MERCODE               = 'MERCODE';
 
-    const COLUMN_SHIPTO                = 'SHIPTO';
+    public const COLUMN_SHIPTO                = 'SHIPTO';
 
-    const COLUMN_CARDSTTE              = 'CARDSTTE';
+    public const COLUMN_CARDSTTE              = 'CARDSTTE';
 
-    const COLUMN_PROFILID              = 'PROFILID';
+    public const COLUMN_PROFILID              = 'PROFILID';
 
-    const COLUMN_CARDMASK              = 'CARDMASK';
+    public const COLUMN_CARDMASK              = 'CARDMASK';
 
-    const COLUMN_CUSTOMER              = 'CUSTOMER';
+    public const COLUMN_CUSTOMER              = 'CUSTOMER';
 
-    const COLUMN_CARDTYPE              = 'CARDTYPE';
+    public const COLUMN_CARDTYPE              = 'CARDTYPE';
 
-    const COLUMN_CARDNAME              = 'CARDNAME';
+    public const COLUMN_CARDNAME              = 'CARDNAME';
 
-    const COLUMN_DRIVLIC               = 'DRIVLIC';
+    public const COLUMN_DRIVLIC               = 'DRIVLIC';
 
-    const COLUMN_IPADDR                = 'IPADDR';
+    public const COLUMN_IPADDR                = 'IPADDR';
 
-    const COLUMN_BILADDR1              = 'BILADDR1';
+    public const COLUMN_BILADDR1              = 'BILADDR1';
 
-    const COLUMN_BILADDR2              = 'BILADDR2';
+    public const COLUMN_BILADDR2              = 'BILADDR2';
 
-    const COLUMN_BILCITY               = 'BILCITY';
+    public const COLUMN_BILCITY               = 'BILCITY';
 
-    const COLUMN_BILPROV               = 'BILPROV';
+    public const COLUMN_BILPROV               = 'BILPROV';
 
-    const COLUMN_BILCTRY               = 'BILCTRY';
+    public const COLUMN_BILCTRY               = 'BILCTRY';
 
-    const COLUMN_BILPSTL               = 'BILPSTL';
+    public const COLUMN_BILPSTL               = 'BILPSTL';
 
-    const COLUMN_CNTPHONE              = 'CNTPHONE';
+    public const COLUMN_CNTPHONE              = 'CNTPHONE';
 
-    const COLUMN_EXPYEAR               = 'EXPYEAR';
+    public const COLUMN_EXPYEAR               = 'EXPYEAR';
 
-    const COLUMN_EXPMONTH              = 'EXPMONTH';
+    public const COLUMN_EXPMONTH              = 'EXPMONTH';
 
-    const COLUMN_COMMENT               = 'COMMENT';
+    public const COLUMN_COMMENT               = 'COMMENT';
 
-    const COLUMN_TRNSLMT               = 'TRNSLMT';
+    public const COLUMN_TRNSLMT               = 'TRNSLMT';
 
-    const COLUMN_CARDPWD               = 'CARDPWD';
+    public const COLUMN_CARDPWD               = 'CARDPWD';
 
-    const COLUMN_DFLTCARD              = 'DFLTCARD';
+    public const COLUMN_DFLTCARD              = 'DFLTCARD';
 
-    const COLUMN_AVS                   = 'AVS';
+    public const COLUMN_AVS                   = 'AVS';
 
-    const COLUMN_CVV                   = 'CVV';
+    public const COLUMN_CVV                   = 'CVV';
 
-    const COLUMN_ISSTORED              = 'ISSTORED';
+    public const COLUMN_ISSTORED              = 'ISSTORED';
 
-    const COLUMN_EMAIL                 = 'EMAIL';
+    public const COLUMN_EMAIL                 = 'EMAIL';
 
-    const COLUMN_SWIPEOPT              = 'SWIPEOPT';
+    public const COLUMN_SWIPEOPT              = 'SWIPEOPT';
 
-    const COLUMN_APPROFILEID           = 'APPROFILEID';
+    public const COLUMN_APPROFILEID           = 'APPROFILEID';
 
-    const COLUMN_CCNETWORK             = 'CCNETWORK';
+    public const COLUMN_CCNETWORK             = 'CCNETWORK';
 
-    const COLUMN_LAST_ORDER_ID         = 'last_order_id';
+    public const COLUMN_LAST_ORDER_ID         = 'last_order_id';
 
-    const CARD_STATE_ACTIVE            = 1;
+    public const CARD_STATE_ACTIVE            = 1;
 
-    const CARD_STATE_DELETED           = 2;
+    public const CARD_STATE_DELETED           = 2;
 
-    const CARD_STATE_DELETED_BY_SYSTEM = 3;
+    public const CARD_STATE_DELETED_BY_SYSTEM = 3;
 
-    const CARD_TYPE_AMEX               = 0;
+    public const CARD_TYPE_AMEX               = 0;
 
-    const CARD_NAME_AMEX               = 'American Express';
+    public const CARD_NAME_AMEX               = 'American Express';
 
-    const CARD_TYPE_VISA               = 1;
+    public const CARD_TYPE_VISA               = 1;
 
-    const CARD_NAME_VISA               = 'Visa';
+    public const CARD_NAME_VISA               = 'Visa';
 
-    const CARD_TYPE_MASTERCARD         = 2;
+    public const CARD_TYPE_MASTERCARD         = 2;
 
-    const CARD_NAME_MASTERCARD         = 'MasterCard';
+    public const CARD_NAME_MASTERCARD         = 'MasterCard';
 
-    const CARD_TYPE_DISCOVER           = 3;
+    public const CARD_TYPE_DISCOVER           = 3;
 
-    const CARD_NAME_DISCOVER           = 'Discover';
+    public const CARD_NAME_DISCOVER           = 'Discover';
 
-    const CARD_NAME_UNKNOWN            = 'Unknown';
+    public const CARD_NAME_UNKNOWN            = 'Unknown';
 
     /**
      * @return mixed
