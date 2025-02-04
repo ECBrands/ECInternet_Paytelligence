@@ -41,6 +41,9 @@ class Customer
         $this->customerSession    = $customerSessionFactory->create();
     }
 
+    /**
+     * @return \Magento\Customer\Api\Data\CustomerInterface|null
+     */
     public function getCurrentCustomer()
     {
         if ($this->customerSession->isLoggedIn()) {
