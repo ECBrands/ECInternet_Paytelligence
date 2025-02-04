@@ -119,9 +119,9 @@ abstract class Card
         $this->resultPageFactory     = $resultPageFactory;
         $this->paymentGatewayPool    = $paymentGatewayPool;
         $this->cardRepository        = $cardRepository;
+        $this->customerHelper        = $customerHelper;
         $this->logger                = $logger;
         $this->config                = $config;
-        $this->customerHelper        = $customerHelper;
         $this->cardFactory           = $cardFactory;
     }
 
