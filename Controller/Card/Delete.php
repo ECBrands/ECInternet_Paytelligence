@@ -9,6 +9,7 @@ namespace ECInternet\Paytelligence\Controller\Card;
 
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\Exception\CouldNotSaveException;
+use ECInternet\Paytelligence\Api\Data\PaytelligenceCardInterface;
 use ECInternet\Paytelligence\Controller\Card;
 use ECInternet\Paytelligence\Model\PaytelligenceCard;
 
@@ -37,25 +38,29 @@ class Delete extends Card implements HttpGetActionInterface
             if (is_numeric($id)) {
                 /** @var \ECInternet\Paytelligence\Model\PaytelligenceCard $card */
                 if ($card = $this->getCard((int)$id)) {
-                    try {
-                        // Mark card as deleted
-                        $this->markAsDeleted($card);
+                    if ($this->doesCardBelongToCurrentCustomer($card)) {
+                        try {
+                            // Mark card as deleted
+                            $this->markAsDeleted($card);
 
-                        // Add message to screen
-                        $this->messageManager->addSuccessMessage(
-                            __('The Card has been deleted.')
-                        );
+                            // Add message to screen
+                            $this->messageManager->addSuccessMessage(
+                                __('The Card has been deleted.')
+                            );
 
-                        // Redirect to homepage
-                        return $resultRedirect->setPath('*/*/');
-                    } catch (CouldNotSaveException $e) {
-                        $this->log('execute()', ['exception' => $e->getMessage()]);
+                            // Redirect to homepage
+                            return $resultRedirect->setPath('*/*/');
+                        } catch (CouldNotSaveException $e) {
+                            $this->log('execute()', ['exception' => $e->getMessage()]);
 
-                        $this->messageManager->addErrorMessage(
-                            __('Unable to delete Card.')
-                        );
+                            $this->messageManager->addErrorMessage(
+                                __('Unable to delete Card.')
+                            );
 
-                        return $resultRedirect->setPath('*/*/');
+                            return $resultRedirect->setPath('*/*/');
+                        }
+                    } else {
+                        $this->log('execute() - Card does not belong to current customer');
                     }
                 } else {
                     $this->log('execute() - Could not find card with Id [' . $id . ']');
@@ -66,10 +71,32 @@ class Delete extends Card implements HttpGetActionInterface
         }
 
         $this->messageManager->addErrorMessage(
-            __('Unable to find Card.')
+            __('Unable to delete Card.')
         );
 
         return $resultRedirect->setPath('*/*/');
+    }
+
+    private function doesCardBelongToCurrentCustomer(PaytelligenceCardInterface $card)
+    {
+        // Cache card customer
+        $customer = $card->getCustomer();
+
+        // Test for missing card CUSTOMER value
+        if (empty($customer)) {
+            return false;
+        }
+
+        // Test for current customer
+        $currentCustomer = $this->customerHelper->getCurrentCustomer();
+        if (!$currentCustomer) {
+            return false;
+        }
+
+        /** @var string[] $customerNumbers */
+        $customerNumbers = $this->customerHelper->getCustomerNumbers($currentCustomer);
+
+        return in_array($customer, $customerNumbers);
     }
 
     /**
