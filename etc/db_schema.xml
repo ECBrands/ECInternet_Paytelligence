@@ -51,6 +51,7 @@
       <column name="PROFILID" />
     </index>
   </table>
+
   <table name="ecinternet_paytelligence_trans" resource="default">
     <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id" />
     <column xsi:type="int" name="parent_card_id" padding="11" unsigned="true" nullable="false" comment="Parent Card Id" />
@@ -106,6 +107,7 @@
       <column name="entity_id" />
     </constraint>
   </table>
+
   <table name="ecinternet_paytelligence_log" resource="default">
     <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id" />
     <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At" />
