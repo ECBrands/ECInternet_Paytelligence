@@ -12,10 +12,10 @@ declare(strict_types=1);
 
 namespace ECInternet\Paytelligence\Controller\Card;
 
-use Magento\Framework\App\Action\HttpPostActionInterface;
-use Magento\Framework\Exception\CouldNotSaveException;
 use ECInternet\Paytelligence\Controller\Card;
 use Exception;
+use Magento\Framework\App\Action\HttpPostActionInterface;
+use Magento\Framework\Exception\CouldNotSaveException;
 
 class Save extends Card implements HttpPostActionInterface
 {

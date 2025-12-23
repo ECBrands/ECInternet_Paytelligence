@@ -7,6 +7,12 @@ declare(strict_types=1);
 
 namespace ECInternet\Paytelligence\Helper;
 
+use ECInternet\Paytelligence\Helper\Customer as CustomerHelper;
+use ECInternet\Paytelligence\Logger\Logger;
+use ECInternet\Paytelligence\Model\PaytelligenceCard;
+use ECInternet\Paytelligence\Model\PaytelligenceTrans;
+use ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard\CollectionFactory as CardCollectionFactory;
+use ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceTrans\CollectionFactory as TransCollectionFactory;
 use Magento\Customer\Api\Data\CustomerInterface;
 use Magento\Directory\Model\Region;
 use Magento\Directory\Model\ResourceModel\Region\CollectionFactory as RegionCollectionFactory;
@@ -14,12 +20,6 @@ use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Sales\Model\Order\Payment;
-use ECInternet\Paytelligence\Helper\Customer as CustomerHelper;
-use ECInternet\Paytelligence\Model\PaytelligenceCard;
-use ECInternet\Paytelligence\Model\PaytelligenceTrans;
-use ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard\CollectionFactory as CardCollectionFactory;
-use ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceTrans\CollectionFactory as TransCollectionFactory;
-use ECInternet\Paytelligence\Logger\Logger;
 
 /**
  * Helper
@@ -74,9 +74,9 @@ class Data extends AbstractHelper
     ) {
         parent::__construct($context);
 
-        $this->regionCollectionFactory = $regionCollectionFactory;
-        $this->customerHelper          = $customerHelper;
-        $this->logger                               = $logger;
+        $this->regionCollectionFactory             = $regionCollectionFactory;
+        $this->customerHelper                      = $customerHelper;
+        $this->logger                              = $logger;
         $this->paytelligenceCardCollectionFactory  = $cardCollectionFactory;
         $this->paytelligenceTransCollectionFactory = $transCollectionFactory;
     }
