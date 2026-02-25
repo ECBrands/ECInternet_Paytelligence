@@ -7,18 +7,18 @@ declare(strict_types=1);
 
 namespace ECInternet\Paytelligence\Controller\Card;
 
-use Magento\Framework\App\Action\HttpGetActionInterface;
-use Magento\Framework\Exception\CouldNotSaveException;
 use ECInternet\Paytelligence\Api\Data\PaytelligenceCardInterface;
 use ECInternet\Paytelligence\Controller\Card;
 use ECInternet\Paytelligence\Model\PaytelligenceCard;
+use Magento\Framework\App\Action\HttpPostActionInterface;
+use Magento\Framework\Exception\CouldNotSaveException;
 
 /**
- * Delete Card Controller
+ * Delete Card controller
  *
  * @SuppressWarnings(PHPMD.ShortVariable)
  */
-class Delete extends Card implements HttpGetActionInterface
+class Delete extends Card implements HttpPostActionInterface
 {
     /**
      * Execute 'Delete' action

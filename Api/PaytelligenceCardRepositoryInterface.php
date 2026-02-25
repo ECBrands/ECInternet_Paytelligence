@@ -7,9 +7,9 @@ declare(strict_types=1);
 
 namespace ECInternet\Paytelligence\Api;
 
-use Magento\Framework\Api\SearchCriteriaInterface;
 use ECInternet\Paytelligence\Api\Data\PaytelligenceCardInterface;
 use ECInternet\Paytelligence\Api\Data\SetCardIdRequestInterface;
+use Magento\Framework\Api\SearchCriteriaInterface;
 
 interface PaytelligenceCardRepositoryInterface
 {

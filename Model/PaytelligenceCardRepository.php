@@ -7,12 +7,6 @@ declare(strict_types=1);
 
 namespace ECInternet\Paytelligence\Model;
 
-use Magento\Framework\Api\SearchCriteriaInterface;
-use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
-use Magento\Framework\Exception\CouldNotDeleteException;
-use Magento\Framework\Exception\CouldNotSaveException;
-use Magento\Framework\Exception\LocalizedException;
-use Magento\Framework\Exception\NoSuchEntityException;
 use ECInternet\Paytelligence\Api\Data\CardSearchResultsInterfaceFactory;
 use ECInternet\Paytelligence\Api\Data\PaytelligenceCardInterface;
 use ECInternet\Paytelligence\Api\Data\SetCardIdRequestInterface;
@@ -21,6 +15,12 @@ use ECInternet\Paytelligence\Logger\Logger;
 use ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard as CardResource;
 use ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard\CollectionFactory as CardCollectionFactory;
 use Exception;
+use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
+use Magento\Framework\Api\SearchCriteriaInterface;
+use Magento\Framework\Exception\CouldNotDeleteException;
+use Magento\Framework\Exception\CouldNotSaveException;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Exception\NoSuchEntityException;
 
 /**
  * @SuppressWarnings(PHPMD.LongVariable)
@@ -153,7 +153,7 @@ class PaytelligenceCardRepository implements PaytelligenceCardRepositoryInterfac
 
         /** @var \ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard\Collection $collection */
         $collection = $this->cardCollectionFactory->create()
-            ->addFieldToFilter(PaytelligenceCard::COLUMN_ID, ['eq' => $cardId]);
+            ->addFieldToFilter(PaytelligenceCard::COLUMN_ID, $cardId);
 
         $collectionCount = $collection->getSize();
         $this->log('getById()', [
