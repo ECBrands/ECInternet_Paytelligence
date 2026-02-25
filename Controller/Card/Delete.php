@@ -14,7 +14,7 @@ use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Exception\CouldNotSaveException;
 
 /**
- * Delete card controller
+ * Delete Card controller
  *
  * @SuppressWarnings(PHPMD.ShortVariable)
  */

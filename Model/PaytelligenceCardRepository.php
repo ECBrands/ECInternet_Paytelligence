@@ -226,8 +226,6 @@ class PaytelligenceCardRepository implements PaytelligenceCardRepositoryInterfac
     public function getList(
         SearchCriteriaInterface $searchCriteria
     ) {
-        $this->log('getList()');
-
         /** @var \ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard\Collection $collection */
         $collection = $this->cardCollectionFactory->create();
 
@@ -236,7 +234,6 @@ class PaytelligenceCardRepository implements PaytelligenceCardRepositoryInterfac
         /** @var \ECInternet\Paytelligence\Api\Data\CardSearchResultsInterface $searchResults */
         $searchResults = $this->cardSearchResultsFactory->create();
 
-        /** @noinspection PhpExpressionResultUnusedInspection */
         $searchResults->setSearchCriteria($searchCriteria);
         $searchResults->setTotalCount($collection->getSize());
 
