@@ -15,8 +15,8 @@ use Magento\Payment\Model\CcConfig;
 use ECInternet\Paytelligence\Api\PaytelligenceCardRepositoryInterface;
 use ECInternet\Paytelligence\Api\PaymentGatewayPoolInterface;
 use ECInternet\Paytelligence\Helper\Data;
-use ECInternet\Paytelligence\Logger\Logger;
 use Exception;
+use Psr\Log\LoggerInterface;
 
 /**
  * Card Edit Block
@@ -51,7 +51,7 @@ class Edit extends Template
     private $helper;
 
     /**
-     * @var \ECInternet\Paytelligence\Logger\Logger
+     * @var \Psr\Log\LoggerInterface
      */
     private $logger;
 
@@ -64,7 +64,7 @@ class Edit extends Template
      * @param \ECInternet\Paytelligence\Api\PaytelligenceCardRepositoryInterface $cardRepository
      * @param \ECInternet\Paytelligence\Api\PaymentGatewayPoolInterface          $paymentGatewayPool
      * @param \ECInternet\Paytelligence\Helper\Data                              $helper
-     * @param \ECInternet\Paytelligence\Logger\Logger                            $logger
+     * @param \Psr\Log\LoggerInterface                                           $logger
      * @param array                                                              $data
      */
     public function __construct(
@@ -74,7 +74,7 @@ class Edit extends Template
         PaytelligenceCardRepositoryInterface $cardRepository,
         PaymentGatewayPoolInterface $paymentGatewayPool,
         Data $helper,
-        Logger $logger,
+        LoggerInterface $logger,
         array $data = []
     ) {
         parent::__construct($context, $data);
@@ -153,12 +153,12 @@ class Edit extends Template
         return $this->helper->getRegionId($country, $region);
     }
 
-    private function getPaymentGateway(string $paymentMethodCode)
+    private function getPaymentGateway(string $paymentGatewayCode)
     {
-        $this->log('getPaymentGateway()', ['paymentMethodCode' => $paymentMethodCode]);
+        $this->log('getPaymentGateway()', ['paymentGatewayCode' => $paymentGatewayCode]);
 
         try {
-            return $this->paymentGatewayPool->getPaymentGateway($paymentMethodCode);
+            return $this->paymentGatewayPool->getPaymentGateway($paymentGatewayCode);
         } catch (LocalizedException $e) {
             $this->log('getPaymentGateway()', ['exception' => $e->getMessage()]);
         }
@@ -168,6 +168,6 @@ class Edit extends Template
 
     private function log(string $message, array $extra = [])
     {
-        $this->logger->info('Block/Card/Edit - ' . $message, $extra);
+        $this->logger->info('[ECInternet_Paytelligence] Block/Card/Edit - ' . $message, $extra);
     }
 }

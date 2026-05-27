@@ -34,6 +34,8 @@ class PaytelligenceTrans extends AbstractModel implements IdentityInterface, Pay
      * Initialize resource model
      *
      * @return void
+     *
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     protected function _construct()
     {

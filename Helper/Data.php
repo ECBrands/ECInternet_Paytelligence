@@ -8,7 +8,6 @@ declare(strict_types=1);
 namespace ECInternet\Paytelligence\Helper;
 
 use ECInternet\Paytelligence\Helper\Customer as CustomerHelper;
-use ECInternet\Paytelligence\Logger\Logger;
 use ECInternet\Paytelligence\Model\PaytelligenceCard;
 use ECInternet\Paytelligence\Model\PaytelligenceTrans;
 use ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard\CollectionFactory as CardCollectionFactory;
@@ -20,6 +19,7 @@ use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Sales\Model\Order\Payment;
+use Psr\Log\LoggerInterface;
 
 /**
  * Helper
@@ -40,11 +40,6 @@ class Data extends AbstractHelper
     private $customerHelper;
 
     /**
-     * @var \ECInternet\Paytelligence\Logger\Logger
-     */
-    private $logger;
-
-    /**
      * @var \ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard\CollectionFactory
      */
     private $paytelligenceCardCollectionFactory;
@@ -55,30 +50,35 @@ class Data extends AbstractHelper
     private $paytelligenceTransCollectionFactory;
 
     /**
+     * @var \Psr\Log\LoggerInterface
+     */
+    private $logger;
+
+    /**
      * Data constructor.
      *
      * @param \Magento\Framework\App\Helper\Context                                              $context
      * @param \Magento\Directory\Model\ResourceModel\Region\CollectionFactory                    $regionCollectionFactory
      * @param \ECInternet\Paytelligence\Helper\Customer                                          $customerHelper
-     * @param \ECInternet\Paytelligence\Logger\Logger                                            $logger
      * @param \ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard\CollectionFactory  $cardCollectionFactory
      * @param \ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceTrans\CollectionFactory $transCollectionFactory
+     * @param \Psr\Log\LoggerInterface                                                           $logger
      */
     public function __construct(
         Context $context,
         RegionCollectionFactory $regionCollectionFactory,
         CustomerHelper $customerHelper,
-        Logger $logger,
         CardCollectionFactory $cardCollectionFactory,
-        TransCollectionFactory $transCollectionFactory
+        TransCollectionFactory $transCollectionFactory,
+        LoggerInterface $logger
     ) {
         parent::__construct($context);
 
         $this->regionCollectionFactory             = $regionCollectionFactory;
         $this->customerHelper                      = $customerHelper;
-        $this->logger                              = $logger;
         $this->paytelligenceCardCollectionFactory  = $cardCollectionFactory;
         $this->paytelligenceTransCollectionFactory = $transCollectionFactory;
+        $this->logger                              = $logger;
     }
 
     /**
@@ -350,6 +350,6 @@ class Data extends AbstractHelper
      */
     private function log(string $message, array $extra = [])
     {
-        $this->logger->info('Helper/Data - ' . $message, $extra);
+        $this->logger->info('[ECInternet_Paytelligence] Helper/Data - ' . $message, $extra);
     }
 }

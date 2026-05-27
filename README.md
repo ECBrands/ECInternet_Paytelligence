@@ -7,6 +7,7 @@
 - [Configuration](#configuration-header)
 - [Specifications](#specifications-header)
 - [Attributes](#attributes-header)
+- [Testing](#testing-header)
 - [Notes](#notes-header)
 - [Version History](#version-history-header)
 

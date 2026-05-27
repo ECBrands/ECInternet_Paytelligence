@@ -11,7 +11,6 @@ use ECInternet\Paytelligence\Api\Data\CardSearchResultsInterfaceFactory;
 use ECInternet\Paytelligence\Api\Data\PaytelligenceCardInterface;
 use ECInternet\Paytelligence\Api\Data\SetCardIdRequestInterface;
 use ECInternet\Paytelligence\Api\PaytelligenceCardRepositoryInterface;
-use ECInternet\Paytelligence\Logger\Logger;
 use ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard as CardResource;
 use ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard\CollectionFactory as CardCollectionFactory;
 use Exception;
@@ -21,6 +20,7 @@ use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
+use Psr\Log\LoggerInterface;
 
 /**
  * @SuppressWarnings(PHPMD.LongVariable)
@@ -39,11 +39,6 @@ class PaytelligenceCardRepository implements PaytelligenceCardRepositoryInterfac
     private $cardSearchResultsFactory;
 
     /**
-     * @var \ECInternet\Paytelligence\Logger\Logger
-     */
-    private $logger;
-
-    /**
      * @var \ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard
      */
     private $resourceModel;
@@ -54,26 +49,31 @@ class PaytelligenceCardRepository implements PaytelligenceCardRepositoryInterfac
     private $cardCollectionFactory;
 
     /**
+     * @var \Psr\Log\LoggerInterface
+     */
+    private $logger;
+
+    /**
      * PaytelligenceCardRepository constructor.
      *
      * @param \Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface                $collectionProcessor
      * @param \ECInternet\Paytelligence\Api\Data\CardSearchResultsInterfaceFactory              $cardSearchResultsInterfaceFactory
-     * @param \ECInternet\Paytelligence\Logger\Logger                                           $logger
      * @param \ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard                   $resourceModel
      * @param \ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard\CollectionFactory $cardCollectionFactory
+     * @param \Psr\Log\LoggerInterface                                                          $logger
      */
     public function __construct(
         CollectionProcessorInterface $collectionProcessor,
         CardSearchResultsInterfaceFactory $cardSearchResultsInterfaceFactory,
-        Logger $logger,
         CardResource $resourceModel,
-        CardCollectionFactory $cardCollectionFactory
+        CardCollectionFactory $cardCollectionFactory,
+        LoggerInterface $logger
     ) {
         $this->collectionProcessor      = $collectionProcessor;
         $this->cardSearchResultsFactory = $cardSearchResultsInterfaceFactory;
-        $this->logger                   = $logger;
         $this->resourceModel            = $resourceModel;
         $this->cardCollectionFactory    = $cardCollectionFactory;
+        $this->logger                   = $logger;
     }
 
     /**
@@ -350,6 +350,6 @@ class PaytelligenceCardRepository implements PaytelligenceCardRepositoryInterfac
      */
     private function log(string $message, array $extra = [])
     {
-        $this->logger->info('Model/PaytelligenceCardRepository - ' . $message, $extra);
+        $this->logger->info('[ECInternet_Paytelligence] Model/PaytelligenceCardRepository - ' . $message, $extra);
     }
 }

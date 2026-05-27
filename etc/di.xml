@@ -29,15 +29,14 @@
 	<preference for="ECInternet\Paytelligence\Api\PaymentGatewayPoolInterface"
 	            type="ECInternet\Paytelligence\Model\PaymentGatewayPool" />
 
-	<!-- Custom Logger -->
-	<type name="ECInternet\Paytelligence\Logger\Logger">
+	<!-- Custom Logger - Must be injected into each class which needs it -->
+	<virtualType name="ECInternetPaytelligenceLogger" type="Magento\Framework\Logger\Monolog">
 		<arguments>
-			<argument name="name" xsi:type="string">Paytelligence</argument>
 			<argument name="handlers" xsi:type="array">
-				<item name="system" xsi:type="object">ECInternet\Paytelligence\Logger\Handler</item>
+				<item name="info" xsi:type="object">ECInternet\Paytelligence\Logger\Handler</item>
 			</argument>
 		</arguments>
-	</type>
+	</virtualType>
 
 	<!-- Define grid data sources and matching Virtual Types -->
 	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">

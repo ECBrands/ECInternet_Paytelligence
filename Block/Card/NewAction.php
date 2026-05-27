@@ -13,8 +13,8 @@ use Magento\Framework\View\Element\Template\Context;
 use Magento\Framework\View\Element\Template;
 use Magento\Payment\Model\CcConfig;
 use ECInternet\Paytelligence\Api\PaymentGatewayPoolInterface;
-use ECInternet\Paytelligence\Logger\Logger;
 use ECInternet\Paytelligence\Model\Config;
+use Psr\Log\LoggerInterface;
 
 /**
  * New Card Block
@@ -37,14 +37,14 @@ class NewAction extends Template
     private $paymentGatewayPool;
 
     /**
-     * @var \ECInternet\Paytelligence\Logger\Logger
-     */
-    private $logger;
-
-    /**
      * @var \ECInternet\Paytelligence\Model\Config
      */
     private $config;
+
+    /**
+     * @var \Psr\Log\LoggerInterface
+     */
+    private $logger;
 
     /**
      * NewAction constructor.
@@ -53,8 +53,8 @@ class NewAction extends Template
      * @param \Magento\Directory\Helper\Data                            $directoryHelper
      * @param \Magento\Payment\Model\CcConfig                           $ccConfig
      * @param \ECInternet\Paytelligence\Api\PaymentGatewayPoolInterface $paymentGatewayPool
-     * @param \ECInternet\Paytelligence\Logger\Logger                   $logger
      * @param \ECInternet\Paytelligence\Model\Config                    $config
+     * @param \Psr\Log\LoggerInterface                                  $logger
      * @param array                                                     $data
      */
     public function __construct(
@@ -62,8 +62,8 @@ class NewAction extends Template
         DirectoryHelper $directoryHelper,
         CcConfig $ccConfig,
         PaymentGatewayPoolInterface $paymentGatewayPool,
-        Logger $logger,
         Config $config,
+        LoggerInterface $logger,
         array $data = []
     ) {
         parent::__construct($context, $data);
@@ -71,8 +71,8 @@ class NewAction extends Template
         $this->directoryHelper    = $directoryHelper;
         $this->ccConfig           = $ccConfig;
         $this->paymentGatewayPool = $paymentGatewayPool;
-        $this->logger             = $logger;
         $this->config             = $config;
+        $this->logger             = $logger;
     }
 
     public function getCcMonths()
@@ -98,6 +98,8 @@ class NewAction extends Template
 
     public function getAllowedCountries()
     {
+        $this->log('getAllowedCountries()');
+
         if ($paymentGatewayCode = $this->config->getAddCardPaymentGateway()) {
             if ($paymentGateway = $this->getPaymentGateway($paymentGatewayCode)) {
                 return $paymentGateway->getAllowedCountries();
@@ -122,8 +124,14 @@ class NewAction extends Template
         return null;
     }
 
+    /**
+     * Write to extension log
+     *
+     * @param string $message
+     * @param array  $extra
+     */
     private function log(string $message, array $extra = [])
     {
-        $this->logger->info('Block/Card/Edit - ' . $message, $extra);
+        $this->logger->info('[ECInternet_Paytelligence] Block/Card/NewAction - ' . $message, $extra);
     }
 }

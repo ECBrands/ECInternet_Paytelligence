@@ -30,7 +30,7 @@ class PaytelligenceLog extends AbstractModel implements IdentityInterface, Payte
     /**
      * @var \Magento\Framework\Serialize\Serializer\Json
      */
-    private $_jsonSerializer;
+    private $jsonSerializer;
 
     /**
      * PaytelligenceLog constructor.
@@ -41,20 +41,25 @@ class PaytelligenceLog extends AbstractModel implements IdentityInterface, Payte
      * @param \Magento\Framework\Model\ResourceModel\AbstractResource|null $resource
      * @param \Magento\Framework\Data\Collection\AbstractDb|null           $resourceCollection
      * @param array                                                        $data
+     *
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function __construct(
         Context $context,
         Registry $registry,
         JsonSerializer $jsonSerializer,
-        AbstractResource $resource = null,
-        AbstractDb $resourceCollection = null,
+        ?AbstractResource $resource = null,
+        ?AbstractDb $resourceCollection = null,
         array $data = []
     ) {
         parent::__construct($context, $registry, $resource, $resourceCollection, $data);
 
-        $this->_jsonSerializer = $jsonSerializer;
+        $this->jsonSerializer = $jsonSerializer;
     }
 
+    /**
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
     protected function _construct()
     {
         $this->_init(ResourceModel\PaytelligenceLog::class);
@@ -130,7 +135,7 @@ class PaytelligenceLog extends AbstractModel implements IdentityInterface, Payte
         if (is_array($value)) {
             unset($value['ccnum']);
 
-            $value = $this->_jsonSerializer->serialize($value);
+            $value = $this->jsonSerializer->serialize($value);
         }
 
         $this->setData(self::COLUMN_VALUE, $value);

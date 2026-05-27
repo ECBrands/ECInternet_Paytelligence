@@ -12,9 +12,9 @@ use Magento\Framework\View\Element\Template;
 use Magento\Theme\Block\Html\Pager;
 use ECInternet\Paytelligence\Helper\Customer as CustomerHelper;
 use ECInternet\Paytelligence\Helper\Data;
-use ECInternet\Paytelligence\Logger\Logger;
 use ECInternet\Paytelligence\Model\PaytelligenceCard;
 use ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard\CollectionFactory as CardCollectionFactory;
+use Psr\Log\LoggerInterface;
 
 /**
  * Card Index Block
@@ -34,14 +34,14 @@ class Index extends Template
     private $helper;
 
     /**
-     * @var \ECInternet\Paytelligence\Logger\Logger
-     */
-    private $logger;
-
-    /**
      * @var \ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard\CollectionFactory
      */
     private $cardCollectionFactory;
+
+    /**
+     * @var \Psr\Log\LoggerInterface
+     */
+    private $logger;
 
     /**
      * Index constructor.
@@ -49,16 +49,16 @@ class Index extends Template
      * @param \Magento\Framework\View\Element\Template\Context                                  $context
      * @param \ECInternet\Paytelligence\Helper\Customer                                         $customerHelper
      * @param \ECInternet\Paytelligence\Helper\Data                                             $helper
-     * @param \ECInternet\Paytelligence\Logger\Logger                                           $logger
      * @param \ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard\CollectionFactory $cardCollectionFactory
+     * @param \Psr\Log\LoggerInterface                                                          $logger
      * @param array                                                                             $data
      */
     public function __construct(
         Context $context,
         CustomerHelper $customerHelper,
         Data $helper,
-        Logger $logger,
         CardCollectionFactory $cardCollectionFactory,
+        LoggerInterface $logger,
         array $data = []
     ) {
         parent::__construct($context, $data);
@@ -177,6 +177,6 @@ class Index extends Template
 
     private function log(string $message, array $extra = [])
     {
-        $this->logger->info('Block/Card/Index - ' . $message, $extra);
+        $this->logger->info('[ECInternet_Paytelligence] Block/Card/Index - ' . $message, $extra);
     }
 }

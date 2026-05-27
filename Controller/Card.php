@@ -17,10 +17,10 @@ use ECInternet\Paytelligence\Api\PaymentGatewayPoolInterface;
 use ECInternet\Paytelligence\Api\PaytelligenceCardRepositoryInterface;
 use ECInternet\Paytelligence\Helper\Customer as CustomerHelper;
 use ECInternet\Paytelligence\Helper\Data;
-use ECInternet\Paytelligence\Logger\Logger;
 use ECInternet\Paytelligence\Model\Config;
 use ECInternet\Paytelligence\Model\PaytelligenceCardFactory;
 use Exception;
+use Psr\Log\LoggerInterface;
 
 /**
  * Base Card controller
@@ -76,11 +76,6 @@ abstract class Card
     protected $helper;
 
     /**
-     * @var \ECInternet\Paytelligence\Logger\Logger
-     */
-    protected $logger;
-
-    /**
      * @var \ECInternet\Paytelligence\Model\Config
      */
     protected $config;
@@ -89,6 +84,11 @@ abstract class Card
      * @var \ECInternet\Paytelligence\Model\PaytelligenceCardFactory
      */
     protected $cardFactory;
+
+    /**
+     * @var \Psr\Log\LoggerInterface
+     */
+    protected $logger;
 
     /**
      * Card constructor.
@@ -102,9 +102,9 @@ abstract class Card
      * @param \ECInternet\Paytelligence\Api\PaytelligenceCardRepositoryInterface $cardRepository
      * @param \ECInternet\Paytelligence\Helper\Customer                          $customerHelper
      * @param \ECInternet\Paytelligence\Helper\Data                              $helper
-     * @param \ECInternet\Paytelligence\Logger\Logger                            $logger
      * @param \ECInternet\Paytelligence\Model\Config                             $config
      * @param \ECInternet\Paytelligence\Model\PaytelligenceCardFactory           $cardFactory
+     * @param \Psr\Log\LoggerInterface                                           $logger
      */
     public function __construct(
         RequestInterface $request,
@@ -116,9 +116,9 @@ abstract class Card
         PaytelligenceCardRepositoryInterface $cardRepository,
         CustomerHelper $customerHelper,
         Data $helper,
-        Logger $logger,
         Config $config,
-        PaytelligenceCardFactory $cardFactory
+        PaytelligenceCardFactory $cardFactory,
+        LoggerInterface $logger
     ) {
         $this->request               = $request;
         $this->resultRedirectFactory = $redirectFactory;
@@ -129,9 +129,9 @@ abstract class Card
         $this->cardRepository        = $cardRepository;
         $this->customerHelper        = $customerHelper;
         $this->helper                = $helper;
-        $this->logger                = $logger;
         $this->config                = $config;
         $this->cardFactory           = $cardFactory;
+        $this->logger                = $logger;
     }
 
     /**
@@ -156,7 +156,7 @@ abstract class Card
         try {
             return $this->cardRepository->getById($id);
         } catch (Exception $e) {
-            $this->log('getCard()', ['exception' => $e->getMessage()]);
+            $this->log('getCard()', ['exception' => $e]);
         }
 
         return null;
@@ -191,6 +191,6 @@ abstract class Card
      */
     protected function log(string $message, array $extra = [])
     {
-        $this->logger->info('Controller/Card - ' . $message, $extra);
+        $this->logger->info('[ECInternet_Paytelligence] Controller/Card - ' . $message, $extra);
     }
 }

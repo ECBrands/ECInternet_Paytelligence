@@ -12,9 +12,9 @@ use Magento\Backend\App\Action\Context;
 use Magento\Framework\Controller\Result\JsonFactory;
 use Magento\Framework\View\Result\PageFactory;
 use ECInternet\Paytelligence\Api\PaytelligenceCardRepositoryInterface;
-use ECInternet\Paytelligence\Logger\Logger;
 use ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard\CollectionFactory as CardCollectionFactory;
 use Exception;
+use Psr\Log\LoggerInterface;
 
 /**
  * Abstract Adminhtml Index controller
@@ -39,14 +39,14 @@ abstract class Index extends Action
     protected $cardRepository;
 
     /**
-     * @var \ECInternet\Paytelligence\Logger\Logger
-     */
-    protected $logger;
-
-    /**
      * @var \ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard\CollectionFactory
      */
     protected $cardCollectionFactory;
+
+    /**
+     * @var \Psr\Log\LoggerInterface
+     */
+    protected $logger;
 
     /**
      * Index constructor.
@@ -55,24 +55,24 @@ abstract class Index extends Action
      * @param \Magento\Framework\Controller\Result\JsonFactory                                  $jsonFactory
      * @param \Magento\Framework\View\Result\PageFactory                                        $resultPageFactory
      * @param \ECInternet\Paytelligence\Api\PaytelligenceCardRepositoryInterface                $cardRepository
-     * @param \ECInternet\Paytelligence\Logger\Logger                                           $logger
      * @param \ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard\CollectionFactory $cardCollectionFactory
+     * @param \Psr\Log\LoggerInterface                                                          $logger
      */
     public function __construct(
         Context $context,
         JsonFactory $jsonFactory,
         PageFactory $resultPageFactory,
         PaytelligenceCardRepositoryInterface $cardRepository,
-        Logger $logger,
-        CardCollectionFactory $cardCollectionFactory
+        CardCollectionFactory $cardCollectionFactory,
+        LoggerInterface $logger
     ) {
         parent::__construct($context);
 
         $this->resultJsonFactory     = $jsonFactory;
         $this->resultPageFactory     = $resultPageFactory;
         $this->cardRepository        = $cardRepository;
-        $this->logger                = $logger;
         $this->cardCollectionFactory = $cardCollectionFactory;
+        $this->logger                = $logger;
     }
 
     /**
@@ -101,6 +101,6 @@ abstract class Index extends Action
      */
     protected function log(string $message, array $extra = [])
     {
-        $this->logger->info('Controller/Adminhtml/Index - ' . $message, $extra);
+        $this->logger->info('[ECInternet_Paytelligence] Controller/Adminhtml/Index - ' . $message, $extra);
     }
 }

@@ -10,7 +10,7 @@ namespace ECInternet\Paytelligence\Model;
 use Magento\Framework\Exception\LocalizedException;
 use ECInternet\Paytelligence\Api\Data\PaymentGatewayInterface;
 use ECInternet\Paytelligence\Api\PaymentGatewayPoolInterface;
-use ECInternet\Paytelligence\Logger\Logger;
+use Psr\Log\LoggerInterface;
 
 class PaymentGatewayPool implements PaymentGatewayPoolInterface
 {
@@ -20,20 +20,20 @@ class PaymentGatewayPool implements PaymentGatewayPoolInterface
     protected $paymentGateways;
 
     /**
-     * @var \ECInternet\Paytelligence\Logger\Logger
+     * @var \Psr\Log\LoggerInterface
      */
     protected $logger;
 
     /**
      * PaymentGatewayPool constructor.
      *
-     * @param \ECInternet\Paytelligence\Logger\Logger $logger
-     * @param array                                   $paymentGateways
+     * @param \Psr\Log\LoggerInterface $logger
+     * @param array                    $paymentGateways
      *
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function __construct(
-        Logger $logger,
+        LoggerInterface $logger,
         array $paymentGateways = []
     ) {
         $this->logger = $logger;
@@ -73,8 +73,14 @@ class PaymentGatewayPool implements PaymentGatewayPoolInterface
         throw new LocalizedException(__('Payment Gateway %1 not found', $name));
     }
 
+    /**
+     * Write to extension log
+     *
+     * @param string $message
+     * @param array  $extra
+     */
     private function log(string $message, array $extra = [])
     {
-        $this->logger->info('Model/PaymentGatewayPool - ' . $message, $extra);
+        $this->logger->info('[ECInternet_Paytelligence] Model/PaymentGatewayPool - ' . $message, $extra);
     }
 }

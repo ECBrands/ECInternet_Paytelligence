@@ -10,9 +10,9 @@ namespace ECInternet\Paytelligence\Controller;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Controller\Result\JsonFactory;
 use ECInternet\Paytelligence\Api\PaytelligenceCardRepositoryInterface;
-use ECInternet\Paytelligence\Logger\Logger;
 use ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard\CollectionFactory as CardCollectionFactory;
 use Exception;
+use Psr\Log\LoggerInterface;
 
 /**
  * Base Index controller
@@ -38,14 +38,14 @@ abstract class Index
     protected $cardRepository;
 
     /**
-     * @var \ECInternet\Paytelligence\Logger\Logger
-     */
-    protected $logger;
-
-    /**
      * @var \ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard\CollectionFactory
      */
     protected $cardCollectionFactory;
+
+    /**
+     * @var \Psr\Log\LoggerInterface
+     */
+    protected $logger;
 
     /**
      * Index constructor.
@@ -53,21 +53,21 @@ abstract class Index
      * @param \Magento\Framework\App\RequestInterface                                           $request
      * @param \Magento\Framework\Controller\Result\JsonFactory                                  $jsonFactory
      * @param \ECInternet\Paytelligence\Api\PaytelligenceCardRepositoryInterface                $cardRepository
-     * @param \ECInternet\Paytelligence\Logger\Logger                                           $logger
      * @param \ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard\CollectionFactory $cardCollectionFactory
+     * @param \Psr\Log\LoggerInterface                                                          $logger
      */
     public function __construct(
         RequestInterface $request,
         JsonFactory $jsonFactory,
         PaytelligenceCardRepositoryInterface $cardRepository,
-        Logger $logger,
-        CardCollectionFactory $cardCollectionFactory
+        CardCollectionFactory $cardCollectionFactory,
+        LoggerInterface $logger
     ) {
         $this->request               = $request;
         $this->resultJsonFactory     = $jsonFactory;
         $this->cardRepository        = $cardRepository;
-        $this->logger                = $logger;
         $this->cardCollectionFactory = $cardCollectionFactory;
+        $this->logger                = $logger;
     }
 
     /**
@@ -92,7 +92,7 @@ abstract class Index
         try {
             return $this->cardRepository->getById($id);
         } catch (Exception $e) {
-            $this->log("getCard() - Card lookup failed - {$e->getMessage()}");
+            $this->log('getCard()', ['exception' => $e]);
         }
 
         return null;
@@ -106,6 +106,6 @@ abstract class Index
      */
     protected function log(string $message, array $extra = [])
     {
-        $this->logger->info('Controller/Card - ' . $message, $extra);
+        $this->logger->info('[ECInternet_Paytelligence] Controller/Index - ' . $message, $extra);
     }
 }
