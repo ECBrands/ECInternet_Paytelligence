@@ -122,6 +122,13 @@ interface PaytelligenceCardInterface extends ExtensibleDataInterface
     public function getId();
 
     /**
+     * @param int|string $id
+     *
+     * @return mixed
+     */
+    public function setId($id);
+
+    /**
      * @return string
      */
     public function getCreatedAt();

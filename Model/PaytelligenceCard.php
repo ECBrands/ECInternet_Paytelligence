@@ -100,6 +100,11 @@ class PaytelligenceCard extends AbstractExtensibleModel implements IdentityInter
         return $this->getData(self::COLUMN_ID);
     }
 
+    public function setId($id)
+    {
+        return $this->setData(self::COLUMN_ID, $id);
+    }
+
     public function getCreatedAt()
     {
         return (string)$this->getData(self::COLUMN_CREATED_AT);
