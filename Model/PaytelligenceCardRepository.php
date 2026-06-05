@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace ECInternet\Paytelligence\Model;
 
+use ECInternet\Paytelligence\Api\Data\CardSearchResultsInterface;
 use ECInternet\Paytelligence\Api\Data\CardSearchResultsInterfaceFactory;
 use ECInternet\Paytelligence\Api\Data\PaytelligenceCardInterface;
 use ECInternet\Paytelligence\Api\Data\SetCardIdRequestInterface;
@@ -84,7 +85,7 @@ class PaytelligenceCardRepository implements PaytelligenceCardRepositoryInterfac
      */
     public function save(
         PaytelligenceCardInterface $card
-    ) {
+    ): PaytelligenceCardInterface {
         $this->log('save()', ['paytelligenceCard' => $card->getData()]);
 
         $this->validate($card);
@@ -126,7 +127,7 @@ class PaytelligenceCardRepository implements PaytelligenceCardRepositoryInterfac
 
     public function bulkSave(
         array $nncardArray
-    ) {
+    ): array {
         $this->log('bulkSave()', ['count' => count($nncardArray)]);
 
         $results = [];
@@ -148,7 +149,7 @@ class PaytelligenceCardRepository implements PaytelligenceCardRepositoryInterfac
 
     public function getById(
         int $cardId
-    ) {
+    ): ?PaytelligenceCardInterface {
         $this->log('getById()', ['cardId' => $cardId]);
 
         /** @var \ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard\Collection $collection */
@@ -177,7 +178,7 @@ class PaytelligenceCardRepository implements PaytelligenceCardRepositoryInterfac
 
     public function getByCardId(
         int $cardId
-    ) {
+    ): ?PaytelligenceCardInterface {
         $this->log('getByCardId()', ['cardId' => $cardId]);
 
         /** @var \ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard\Collection $collection */
@@ -206,7 +207,7 @@ class PaytelligenceCardRepository implements PaytelligenceCardRepositoryInterfac
 
     public function getByProfileId(
         string $profileId
-    ) {
+    ): ?PaytelligenceCardInterface {
         $collection = $this->cardCollectionFactory->create()
             ->addFieldToFilter(PaytelligenceCard::COLUMN_PROFILID, $profileId);
 
@@ -225,7 +226,7 @@ class PaytelligenceCardRepository implements PaytelligenceCardRepositoryInterfac
 
     public function getList(
         SearchCriteriaInterface $searchCriteria
-    ) {
+    ): CardSearchResultsInterface {
         /** @var \ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard\Collection $collection */
         $collection = $this->cardCollectionFactory->create();
 
@@ -245,7 +246,7 @@ class PaytelligenceCardRepository implements PaytelligenceCardRepositoryInterfac
 
     public function delete(
         PaytelligenceCardInterface $card
-    ) {
+    ): bool {
         try {
             $this->resourceModel->delete($card);
         } catch (Exception $e) {
@@ -263,7 +264,7 @@ class PaytelligenceCardRepository implements PaytelligenceCardRepositoryInterfac
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      * @throws \Magento\Framework\Exception\LocalizedException
      */
-    public function deleteById(int $cardId)
+    public function deleteById(int $cardId): bool
     {
         if ($card = $this->getByCardId($cardId)) {
             return $this->delete($card);
@@ -274,7 +275,7 @@ class PaytelligenceCardRepository implements PaytelligenceCardRepositoryInterfac
 
     public function setCardId(
         SetCardIdRequestInterface $setCardIdRequest
-    ) {
+    ): void {
         $this->log('setCardId()', ['setCardId' => $setCardIdRequest->getData()]);
 
         $id = $setCardIdRequest->getId();
@@ -302,7 +303,7 @@ class PaytelligenceCardRepository implements PaytelligenceCardRepositoryInterfac
      */
     protected function validate(
         PaytelligenceCardInterface $card
-    ) {
+    ): void {
         //if (empty($card->getCreditCardProfileId())) {
             //throw new CouldNotSaveException(__('PROFILID not set'));
         //}
@@ -323,15 +324,14 @@ class PaytelligenceCardRepository implements PaytelligenceCardRepositoryInterfac
      */
     private function doesRecordExist(
         PaytelligenceCardInterface $card
-    ) {
+    ): bool {
         $this->log('doesRecordExist()', ['card' => $card->getData()]);
 
         if ($profileId = $card->getCreditCardProfileId()) {
             return ($this->getByProfileId($profileId) !== null);
         }
 
-        $cardId = $card->getCardId();
-        if (!empty($cardId)) {
+        if ($cardId = $card->getCardId()) {
             return ($this->getByCardId($cardId) !== null);
         }
 
@@ -348,7 +348,7 @@ class PaytelligenceCardRepository implements PaytelligenceCardRepositoryInterfac
      *
      * @return void
      */
-    private function log(string $message, array $extra = [])
+    private function log(string $message, array $extra = []): void
     {
         $this->logger->info('Model/PaytelligenceCardRepository - ' . $message, $extra);
     }

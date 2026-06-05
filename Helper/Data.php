@@ -11,6 +11,7 @@ use ECInternet\Paytelligence\Helper\Customer as CustomerHelper;
 use ECInternet\Paytelligence\Logger\Logger;
 use ECInternet\Paytelligence\Model\PaytelligenceCard;
 use ECInternet\Paytelligence\Model\PaytelligenceTrans;
+use ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard\Collection as CardCollection;
 use ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard\CollectionFactory as CardCollectionFactory;
 use ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceTrans\CollectionFactory as TransCollectionFactory;
 use Magento\Customer\Api\Data\CustomerInterface;
@@ -88,7 +89,7 @@ class Data extends AbstractHelper
      */
     public function getStoredCardCollectionForCustomer(
         CustomerInterface $customer
-    ) {
+    ): ?CardCollection {
         $this->log('getStoredCardCollectionForCustomer()');
 
         $customerNumbers = $this->customerHelper->getCustomerNumbers($customer);
@@ -111,7 +112,7 @@ class Data extends AbstractHelper
      *
      * @return array
      */
-    public function getStoredCardsBillingAddresses()
+    public function getStoredCardsBillingAddresses(): array
     {
         $storedCardAddresses = [];
 
@@ -140,7 +141,7 @@ class Data extends AbstractHelper
      *
      * @return \ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard\Collection|null
      */
-    public function getStoredCardsForLoggedInCustomer()
+    public function getStoredCardsForLoggedInCustomer(): ?CardCollection
     {
         /** @var \Magento\Customer\Api\Data\CustomerInterface $customer */
         if ($customer = $this->customerHelper->getCurrentCustomer()) {
@@ -150,7 +151,7 @@ class Data extends AbstractHelper
         return null;
     }
 
-    public function hasPreviousTransactions(CustomerInterface $customer, string $cardMask)
+    public function hasPreviousTransactions(CustomerInterface $customer, string $cardMask): bool
     {
         $customerNumbers = $this->customerHelper->getCustomerNumbers($customer);
         $this->log('hasPreviousTransactions()', ['customerNumbers' => $customerNumbers]);
@@ -170,7 +171,7 @@ class Data extends AbstractHelper
      *
      * @throws \Magento\Framework\Exception\LocalizedException
      */
-    public function confirmNewCard(Payment $payment, CustomerInterface $customer)
+    public function confirmNewCard(Payment $payment, CustomerInterface $customer): void
     {
         $this->log('confirmNewCard()', [
             'paymentAdditionalInformation' => $payment->getAdditionalInformation()
@@ -230,7 +231,7 @@ class Data extends AbstractHelper
         int $expirationYear,
         int $cardState = 1,
         int $isStored = 1
-    ) {
+    ): bool {
         $this->log('isNewCard()', [
             'cardState'       => $cardState,
             'isStored'        => $isStored,
@@ -261,7 +262,7 @@ class Data extends AbstractHelper
      *
      * @return string
      */
-    public function getRegionCode(string $country, int $regionId)
+    public function getRegionCode(string $country, int $regionId): string
     {
         $this->log('getRegionCode()', ['country' => $country, 'regionId' => $regionId]);
 
@@ -288,7 +289,7 @@ class Data extends AbstractHelper
      *
      * @return int|null
      */
-    public function getRegionId(string $country, string $regionCode)
+    public function getRegionId(string $country, string $regionCode): ?int
     {
         $this->log('getRegionId()', ['country' => $country, 'regionCode' => $regionCode]);
 
@@ -316,7 +317,7 @@ class Data extends AbstractHelper
      *
      * @return \ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard\Collection|null
      */
-    private function getStoredCardCollectionByCustomerNumbers(array $customerNumbers)
+    private function getStoredCardCollectionByCustomerNumbers(array $customerNumbers): ?CardCollection
     {
         $this->log('getStoredCardCollectionByCustomerNumbers()', ['customerNumbers' => $customerNumbers]);
 
@@ -338,7 +339,7 @@ class Data extends AbstractHelper
      *
      * @return void
      */
-    private function log(string $message, array $extra = [])
+    private function log(string $message, array $extra = []): void
     {
         $this->logger->info('Helper/Data - ' . $message, $extra);
     }

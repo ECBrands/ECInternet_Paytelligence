@@ -36,7 +36,7 @@ class Config
      *
      * @return bool
      */
-    public function isModuleEnabled()
+    public function isModuleEnabled(): bool
     {
         return $this->scopeConfig->isSetFlag(self::CONFIG_PATH_ENABLED);
     }
@@ -44,7 +44,7 @@ class Config
     /**
      * @return string
      */
-    public function getAddCardPaymentGateway()
+    public function getAddCardPaymentGateway(): string
     {
         return (string)$this->scopeConfig->getValue(self::CONFIG_PATH_ADD_CARD_PAYMENT_METHOD);
     }

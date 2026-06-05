@@ -44,7 +44,7 @@ class Customer
     /**
      * @return \Magento\Customer\Api\Data\CustomerInterface|null
      */
-    public function getCurrentCustomer()
+    public function getCurrentCustomer(): ?CustomerInterface
     {
         if ($this->customerSession->isLoggedIn()) {
             if ($customerId = $this->customerSession->getCustomerId()) {
@@ -62,7 +62,7 @@ class Customer
      *
      * @return \Magento\Customer\Api\Data\CustomerInterface|null
      */
-    public function getCustomerById(int $customerId)
+    public function getCustomerById(int $customerId): ?CustomerInterface
     {
         try {
             return $this->customerRepository->getById($customerId);
@@ -78,7 +78,7 @@ class Customer
      *
      * @return string[]
      */
-    public function getCustomerNumbers(CustomerInterface $customer)
+    public function getCustomerNumbers(CustomerInterface $customer): array
     {
         $customerNumbers = [];
 
