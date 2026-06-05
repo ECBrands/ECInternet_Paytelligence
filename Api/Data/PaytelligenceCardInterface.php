@@ -10,6 +10,7 @@ namespace ECInternet\Paytelligence\Api\Data;
 use Magento\Framework\Api\ExtensibleDataInterface;
 
 /**
+ * @api
  * @SuppressWarnings(PHPMD.ShortVariable)
  */
 interface PaytelligenceCardInterface extends ExtensibleDataInterface

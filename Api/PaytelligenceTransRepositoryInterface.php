@@ -11,6 +11,7 @@ use Magento\Framework\Api\SearchCriteriaInterface;
 use ECInternet\Paytelligence\Api\Data\PaytelligenceTransInterface;
 
 /**
+ * @api
  * @SuppressWarnings(PHPMD.LongVariable)
  */
 interface PaytelligenceTransRepositoryInterface
