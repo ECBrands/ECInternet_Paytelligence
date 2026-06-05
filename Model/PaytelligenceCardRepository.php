@@ -90,7 +90,7 @@ class PaytelligenceCardRepository implements PaytelligenceCardRepositoryInterfac
         $this->validate($card);
 
         // If this record doesn't have an id, attempt to look one up
-        if (empty($card->getId())) {
+        if ($card->getId() === null) {
             // If we find existing, grab the ID and set on incoming record
             if ($this->doesRecordExist($card)) {
                 /** @var \ECInternet\Paytelligence\Api\Data\PaytelligenceCardInterface $model */
