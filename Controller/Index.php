@@ -106,6 +106,6 @@ abstract class Index
      */
     protected function log(string $message, array $extra = [])
     {
-        $this->logger->info('Controller/Card - ' . $message, $extra);
+        $this->logger->info('Controller/Index - ' . $message, $extra);
     }
 }
