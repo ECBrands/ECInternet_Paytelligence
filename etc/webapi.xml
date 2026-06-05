@@ -41,7 +41,7 @@
 	<route url="/V1/paytelligence/cards/:id" method="DELETE">
 		<service class="ECInternet\Paytelligence\Api\PaytelligenceCardRepositoryInterface" method="deleteById" />
 		<resources>
-			<resource ref="anonymous" />
+			<resource ref="ECInternet_Paytelligence::creditCards" />
 		</resources>
 	</route>
 
