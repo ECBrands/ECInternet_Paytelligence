@@ -139,7 +139,7 @@ class Save extends Card implements HttpPostActionInterface
             $addCardPaymentGatewayName = $this->getAddCardPaymentGatewayName();
             $this->log('execute()', ['addCardPaymentGatewayName' => $addCardPaymentGatewayName]);
 
-            if (!$addCardPaymentGatewayName) {
+            if ($addCardPaymentGatewayName === '') {
                 $this->messageManager->addNoticeMessage(
                     __("Paytellignce not configured correctly. Please set 'addCardPaymentGateway' setting.")
                 );

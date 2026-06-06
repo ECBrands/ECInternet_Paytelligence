@@ -321,7 +321,7 @@ class Data extends AbstractHelper
     {
         $this->log('getStoredCardCollectionByCustomerNumbers()', ['customerNumbers' => $customerNumbers]);
 
-        if (count($customerNumbers) > 0) {
+        if (!empty($customerNumbers)) {
             return $this->paytelligenceCardCollectionFactory->create()
                 ->addFieldToFilter(PaytelligenceCard::COLUMN_CARDSTTE, ['eq' => 1])
                 ->addFieldToFilter(PaytelligenceCard::COLUMN_ISSTORED, ['eq' => 1])
