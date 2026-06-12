@@ -65,11 +65,7 @@ class Cards extends Template implements TabInterface
      */
     public function canShowTab()
     {
-        if ($this->getCustomerId()) {
-            return true;
-        }
-
-        return false;
+        return (bool)$this->getCustomerId();
     }
 
     /**
@@ -77,11 +73,7 @@ class Cards extends Template implements TabInterface
      */
     public function isHidden()
     {
-        if ($this->getCustomerId()) {
-            return false;
-        }
-
-        return true;
+        return !$this->getCustomerId();
     }
 
     /**

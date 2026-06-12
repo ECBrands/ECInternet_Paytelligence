@@ -9,6 +9,9 @@ namespace ECInternet\Paytelligence\Api;
 
 use ECInternet\Paytelligence\Api\Data\PaytelligenceLogInterface;
 
+/**
+ * @api
+ */
 interface PaytelligenceLogRepositoryInterface
 {
     /**

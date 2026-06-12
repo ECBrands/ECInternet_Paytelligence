@@ -19,6 +19,7 @@ use Magento\Framework\Registry;
 use Magento\Framework\Stdlib\DateTime;
 use ECInternet\Paytelligence\Api\Data\PaytelligenceCardExtensionInterface;
 use ECInternet\Paytelligence\Api\Data\PaytelligenceCardInterface;
+use ECInternet\Paytelligence\Logger\Logger;
 
 /**
  * PaytelligenceCard data model
@@ -37,6 +38,11 @@ class PaytelligenceCard extends AbstractExtensibleModel implements IdentityInter
     protected $_eventObject = 'paytelligence_card';
 
     /**
+     * @var \ECInternet\Paytelligence\Logger\Logger
+     */
+    private $logger;
+
+    /**
      * @var \Magento\Framework\Stdlib\DateTime
      */
     private $dateTime;
@@ -49,6 +55,7 @@ class PaytelligenceCard extends AbstractExtensibleModel implements IdentityInter
      * @param \Magento\Framework\Api\ExtensionAttributesFactory            $extensionFactory
      * @param \Magento\Framework\Api\AttributeValueFactory                 $customAttributeFactory
      * @param \Magento\Framework\Stdlib\DateTime                           $dateTime
+     * @param \ECInternet\Paytelligence\Logger\Logger                      $logger
      * @param \Magento\Framework\Model\ResourceModel\AbstractResource|null $resource
      * @param \Magento\Framework\Data\Collection\AbstractDb|null           $resourceCollection
      * @param array                                                        $data
@@ -59,11 +66,13 @@ class PaytelligenceCard extends AbstractExtensibleModel implements IdentityInter
         ExtensionAttributesFactory $extensionFactory,
         AttributeValueFactory $customAttributeFactory,
         DateTime $dateTime,
+        Logger $logger,
         AbstractResource $resource = null,
         AbstractDb $resourceCollection = null,
         array $data = []
     ) {
         $this->dateTime = $dateTime;
+        $this->logger   = $logger;
 
         parent::__construct($context, $registry, $extensionFactory, $customAttributeFactory, $resource, $resourceCollection, $data);
     }
@@ -89,6 +98,11 @@ class PaytelligenceCard extends AbstractExtensibleModel implements IdentityInter
     public function getId()
     {
         return $this->getData(self::COLUMN_ID);
+    }
+
+    public function setId($id)
+    {
+        return $this->setData(self::COLUMN_ID, $id);
     }
 
     public function getCreatedAt()
@@ -532,6 +546,8 @@ class PaytelligenceCard extends AbstractExtensibleModel implements IdentityInter
      */
     public function buildFromArray(array $data)
     {
+        $this->log('buildFromArray()', ['data' => $data]);
+
         if (isset($data[self::COLUMN_CARDID])) {
             $this->setCardId($data[self::COLUMN_CARDID]);
         }
@@ -557,7 +573,11 @@ class PaytelligenceCard extends AbstractExtensibleModel implements IdentityInter
         }
 
         if (isset($data[self::COLUMN_CARDTYPE])) {
-            $this->setCardType($data[self::COLUMN_CARDTYPE]);
+            if (is_numeric($data[self::COLUMN_CARDTYPE])) {
+                $this->setCardType((int)$data[self::COLUMN_CARDTYPE]);
+            } else {
+                $this->log('buildFromArray() - Unable to set ' . self::COLUMN_CARDTYPE . ', - not numeric.');
+            }
         }
 
         if (isset($data[self::COLUMN_CARDNAME])) {
@@ -599,6 +619,8 @@ class PaytelligenceCard extends AbstractExtensibleModel implements IdentityInter
         if (isset($data[self::COLUMN_EXPYEAR])) {
             if (is_numeric($data[self::COLUMN_EXPYEAR])) {
                 $this->setExpiryYear((int)$data[self::COLUMN_EXPYEAR]);
+            } else {
+                $this->log('buildFromArray() - Unable to set ' . self::COLUMN_EXPYEAR . ', - not numeric.');
             }
         }
 
@@ -647,5 +669,18 @@ class PaytelligenceCard extends AbstractExtensibleModel implements IdentityInter
 
     public function updateFromArray(array $cardData)
     {
+    }
+
+    /**
+     * Write to extension log
+     *
+     * @param string $message
+     * @param array  $extra
+     *
+     * @return void
+     */
+    private function log(string $message, array $extra = [])
+    {
+        $this->logger->info('PaytelligenceCard - ' . $message, $extra);
     }
 }

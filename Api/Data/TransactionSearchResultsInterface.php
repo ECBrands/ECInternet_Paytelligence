@@ -9,6 +9,9 @@ namespace ECInternet\Paytelligence\Api\Data;
 
 use Magento\Framework\Api\SearchResultsInterface;
 
+/**
+ * @api
+ */
 interface TransactionSearchResultsInterface extends SearchResultsInterface
 {
     /**

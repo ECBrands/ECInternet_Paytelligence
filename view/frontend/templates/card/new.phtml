@@ -11,10 +11,10 @@ declare(strict_types=1);
 
 <div id="paytelligence-card-form">
     <form class="form contact"
-          action="<?= $block->getUrl('paytelligence/card/save', ['_secure' => true]) ?>"
+          action="<?= $escaper->escapeHtmlAttr($block->getUrl('paytelligence/card/save', ['_secure' => true])) ?>"
           id="card-form"
           method="post"
-          data-hasrequired="<?= __('* Required Fields') ?>"
+          data-hasrequired="<?= $escaper->escapeHtmlAttr(__('* Required Fields')) ?>"
           data-mage-init='{"validation": {}}'>
         <fieldset class="fieldset">
             <legend class="legend">
@@ -25,12 +25,12 @@ declare(strict_types=1);
             <!-- Credit Card Number - cc_number -->
             <div class="field cardnumber required">
                 <label class="label" for="cardnumber">
-                    <span><?= __('Card Number') ?></span>
+                    <span><?= $escaper->escapeHtml(__('Card Number')) ?></span>
                 </label>
                 <div class="control">
                     <input name="cardnumber"
                            id="cardnumber"
-                           title="<?= __('Card Number') ?>"
+                           title="<?= $escaper->escapeHtmlAttr(__('Card Number')) ?>"
                            class="input-text"
                            type="number"
                            data-validate="{'required-number':true}"
@@ -41,12 +41,12 @@ declare(strict_types=1);
             <!-- Expiration Date - cc_exp_month, cc_exp_year -->
             <div class="field expmonth required">
                 <label class="label" for="expmonth">
-                    <span><?= __('Expiration Month') ?></span>
+                    <span><?= $escaper->escapeHtml(__('Expiration Month')) ?></span>
                 </label>
                 <div class="control">
                     <select name="expmonth"
                             id="expmonth"
-                            title="<?= __('Expiration Month') ?>"
+                            title="<?= $escaper->escapeHtmlAttr(__('Expiration Month')) ?>"
                             class="select select-month"
                             data-validate="{'required':true,'validate-cc-exp': '#expyear'}"
                     >
@@ -61,12 +61,12 @@ declare(strict_types=1);
 
             <div class="field expyear required">
                 <label class="label" for="expyear">
-                    <span><?= __('Expiration Year') ?></span>
+                    <span><?= $escaper->escapeHtml(__('Expiration Year')) ?></span>
                 </label>
                 <div class="control">
                     <select name="expyear"
                             id="expyear"
-                            title="<?= __('Expiration Year') ?>"
+                            title="<?= $escaper->escapeHtmlAttr(__('Expiration Year')) ?>"
                             class="select select-year"
                             data-validate="{'required':true}"
                     >
@@ -82,12 +82,12 @@ declare(strict_types=1);
             <!-- Card Verification Number - cc_cid -->
             <div class="field cvv required">
                 <label class="label" for="cvv">
-                    <span><?= __('CVV') ?></span>
+                    <span><?= $escaper->escapeHtml(__('CVV')) ?></span>
                 </label>
                 <div class="control">
                     <input name="cvv"
                            id="cvv"
-                           title="<?= __('CVV') ?>"
+                           title="<?= $escaper->escapeHtmlAttr(__('CVV')) ?>"
                            class="input-text"
                            data-validate="{'required-number':true}"
                            type="password"
@@ -98,12 +98,12 @@ declare(strict_types=1);
             <!-- Card Holder Name - cc_name -->
             <div class="field cardname required">
                 <label class="label" for="cardname">
-                    <span><?= __('Name on Card') ?></span>
+                    <span><?= $escaper->escapeHtml(__('Name on Card')) ?></span>
                 </label>
                 <div class="control">
                     <input name="cardname"
                            id="cardname"
-                           title="<?= __('Name on Card') ?>"
+                           title="<?= $escaper->escapeHtmlAttr(__('Name on Card')) ?>"
                            class="input-text"
                            type="text"
                            data-validate="{'required':true}"
@@ -114,12 +114,12 @@ declare(strict_types=1);
             <!-- Street Address - cc_addr_street_one -->
             <div class="field bilstre1 required">
                 <label class="label" for="bilstre1">
-                    <span><?= __('Street Line 1') ?></span>
+                    <span><?= $escaper->escapeHtml(__('Street Line 1')) ?></span>
                 </label>
                 <div class="control">
                     <input name="bilstre1"
                            id="bilstre1"
-                           title="<?= __('Street Line 1') ?>"
+                           title="<?= $escaper->escapeHtmlAttr(__('Street Line 1')) ?>"
                            class="input-text"
                            type="text"
                            data-validate="{'required':true}"
@@ -130,12 +130,12 @@ declare(strict_types=1);
             <!-- Street Address - cc_addr_street_two -->
             <div class="field bilstre2">
                 <label class="label" for="bilstre2">
-                    <span><?= __('Street Line 2') ?></span>
+                    <span><?= $escaper->escapeHtml(__('Street Line 2')) ?></span>
                 </label>
                 <div class="control">
                     <input name="bilstre2"
                            id="bilstre2"
-                           title="<?= __('Street Line 2') ?>"
+                           title="<?= $escaper->escapeHtmlAttr(__('Street Line 2')) ?>"
                            class="input-text"
                            type="text"
                     />
@@ -145,12 +145,12 @@ declare(strict_types=1);
             <!-- City - cc_addr_city -->
             <div class="field bilcity required">
                 <label class="label" for="bilcity">
-                    <span><?= __('City') ?></span>
+                    <span><?= $escaper->escapeHtml(__('City')) ?></span>
                 </label>
                 <div class="control">
                     <input name="bilcity"
                            id="bilcity"
-                           title="<?= __('City') ?>"
+                           title="<?= $escaper->escapeHtmlAttr(__('City')) ?>"
                            class="input-text"
                            type="text"
                            data-validate="{'required':true}"
@@ -160,7 +160,7 @@ declare(strict_types=1);
 
             <div class="field bilprov required">
                 <label class="label" for="bilprov">
-                    <span><?= __('Province / State') ?></span>
+                    <span><?= $escaper->escapeHtml(__('Province / State')) ?></span>
                 </label>
                 <div class="control">
                     <input name="region"
@@ -179,12 +179,12 @@ declare(strict_types=1);
             <!-- Zip/Postal Code - cc_addr_postcode -->
             <div class="field bilpstl required">
                 <label class="label" for="bilpstl">
-                    <span><?= __('Postal Code') ?></span>
+                    <span><?= $escaper->escapeHtml(__('Postal Code')) ?></span>
                 </label>
                 <div class="control">
                     <input name="bilpstl"
                            id="bilpstl"
-                           title="<?= __('Postal Code') ?>"
+                           title="<?= $escaper->escapeHtmlAttr(__('Postal Code')) ?>"
                            class="input-text"
                            type="text"
                            data-validate="{'required':true}"
@@ -195,12 +195,12 @@ declare(strict_types=1);
             <!-- Country - cc_addr_country_id -->
             <div class="field bilctry required">
                 <label class="label" for="bilctry">
-                    <span><?= __('Country') ?></span>
+                    <span><?= $escaper->escapeHtml(__('Country')) ?></span>
                 </label>
                 <div class="control">
                     <select name="bilctry"
                             id="bilctry"
-                            title="<?= __('Country') ?>"
+                            title="<?= $escaper->escapeHtmlAttr(__('Country')) ?>"
                             data-validate="{'required':true}"
                     >
                         <option value=""></option>
@@ -217,8 +217,8 @@ declare(strict_types=1);
         <div class="actions-toolbar">
             <div class="primary">
                 <input type="hidden" name="hideit" id="hideit" value="" />
-                <button type="submit" title="<?= __('Submit') ?>" class="action submit">
-                    <span><?= __('Submit') ?></span>
+                <button type="submit" title="<?= $escaper->escapeHtmlAttr(__('Submit')) ?>" class="action submit">
+                    <span><?= $escaper->escapeHtml(__('Submit')) ?></span>
                 </button>
             </div>
         </div>

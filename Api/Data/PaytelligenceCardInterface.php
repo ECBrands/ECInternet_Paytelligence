@@ -10,6 +10,7 @@ namespace ECInternet\Paytelligence\Api\Data;
 use Magento\Framework\Api\ExtensibleDataInterface;
 
 /**
+ * @api
  * @SuppressWarnings(PHPMD.ShortVariable)
  */
 interface PaytelligenceCardInterface extends ExtensibleDataInterface
@@ -120,6 +121,13 @@ interface PaytelligenceCardInterface extends ExtensibleDataInterface
      * @return mixed
      */
     public function getId();
+
+    /**
+     * @param int|string $id
+     *
+     * @return mixed
+     */
+    public function setId($id);
 
     /**
      * @return string

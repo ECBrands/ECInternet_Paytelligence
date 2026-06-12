@@ -29,7 +29,7 @@ class Edit extends Card implements HttpGetActionInterface
 
             if (is_numeric($id)) {
                 $card = $this->getCard((int)$id);
-                if (!$card || !$card->getId()) {
+                if (!$card) {
                     $this->messageManager->addErrorMessage(__('This card no longer exists.'));
 
                     return $this->resultRedirectFactory->create()->setPath('*/*/');

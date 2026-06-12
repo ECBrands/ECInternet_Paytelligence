@@ -37,7 +37,7 @@ class Index extends Card implements HttpGetActionInterface
             $breadcrumbs->addCrumb('my_account', [
                 'label' => __('My Account'),
                 'title' => __('My Account'),
-                'link'  => '/customer/account/'
+                'link'  => $this->url->getUrl('customer/account')
             ]);
             $breadcrumbs->addCrumb('my_cards', [
                 'label' => __('My Cards'),

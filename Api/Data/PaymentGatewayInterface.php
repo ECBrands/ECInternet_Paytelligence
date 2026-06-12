@@ -9,6 +9,9 @@ namespace ECInternet\Paytelligence\Api\Data;
 
 use Exception;
 
+/**
+ * @api
+ */
 interface PaymentGatewayInterface
 {
     /**
