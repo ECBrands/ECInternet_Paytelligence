@@ -55,14 +55,14 @@ class PaymentGatewayPool implements PaymentGatewayPoolInterface
     /**
      * @inheritDoc
      */
-    public function getPaymentGateways()
+    public function getPaymentGateways(): array
     {
         $this->log('getPaymentGateways()');
 
         return $this->paymentGateways;
     }
 
-    public function getPaymentGateway($name)
+    public function getPaymentGateway($name): PaymentGatewayInterface
     {
         $this->log('getPaymentGateway()', ['name' => $name]);
 
@@ -73,7 +73,7 @@ class PaymentGatewayPool implements PaymentGatewayPoolInterface
         throw new LocalizedException(__('Payment Gateway %1 not found', $name));
     }
 
-    private function log(string $message, array $extra = [])
+    private function log(string $message, array $extra = []): void
     {
         $this->logger->info('Model/PaymentGatewayPool - ' . $message, $extra);
     }
