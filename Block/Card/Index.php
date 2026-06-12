@@ -44,6 +44,11 @@ class Index extends Template
     private $cardCollectionFactory;
 
     /**
+     * @var \ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard\Collection|bool|null
+     */
+    private $cardsCache = null;
+
+    /**
      * Index constructor.
      *
      * @param \Magento\Framework\View\Element\Template\Context                                  $context
@@ -115,10 +120,14 @@ class Index extends Template
      */
     public function getCards()
     {
+        if ($this->cardsCache !== null) {
+            return $this->cardsCache;
+        }
+
         $this->log('getCards()');
 
         if ($customer = $this->customerHelper->getCurrentCustomer()) {
-            $customerNumbers = $this->helper->getCustomerNumbers($customer);
+            $customerNumbers = $this->customerHelper->getCustomerNumbers($customer);
             $this->log('getCards()', ['customerNumbers' => $customerNumbers]);
 
             if ($customerNumbers) {
@@ -133,7 +142,7 @@ class Index extends Template
                     : 10;
 
                 $collection = $this->cardCollectionFactory->create()
-                    ->addFieldToFilter(PaytelligenceCard::COLUMN_CUSTOMER, ['in' => implode(',', $customerNumbers)])
+                    ->addFieldToFilter(PaytelligenceCard::COLUMN_CUSTOMER, ['in' => $customerNumbers])
                     ->addFieldToFilter(PaytelligenceCard::COLUMN_ISSTORED, ['eq' => 1])
                     ->addFieldToFilter(PaytelligenceCard::COLUMN_CARDSTTE, ['eq' => 1])
                     ->setPageSize($pageSize)
@@ -144,11 +153,15 @@ class Index extends Template
                     'count' => $collection->getSize()
                 ]);
 
-                return $collection;
+                $this->cardsCache = $collection;
+
+                return $this->cardsCache;
             }
         }
 
-        return false;
+        $this->cardsCache = false;
+
+        return $this->cardsCache;
     }
 
     /**

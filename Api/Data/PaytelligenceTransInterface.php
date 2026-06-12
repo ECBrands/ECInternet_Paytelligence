@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace ECInternet\Paytelligence\Api\Data;
 
 /**
+ * @api
  * @SuppressWarnings(PHPMD.LongVariable)
  */
 interface PaytelligenceTransInterface
