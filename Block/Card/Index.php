@@ -29,11 +29,6 @@ class Index extends Template
     private $customerHelper;
 
     /**
-     * @var \ECInternet\Paytelligence\Helper\Data
-     */
-    private $helper;
-
-    /**
      * @var \ECInternet\Paytelligence\Logger\Logger
      */
     private $logger;
