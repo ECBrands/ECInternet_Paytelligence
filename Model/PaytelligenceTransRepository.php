@@ -140,7 +140,6 @@ class PaytelligenceTransRepository implements PaytelligenceTransRepositoryInterf
         /** @var \ECInternet\Paytelligence\Api\Data\TransactionSearchResultsInterface $searchResults */
         $searchResults = $this->transactionSearchResultsFactory->create();
 
-        /** @noinspection PhpExpressionResultUnusedInspection */
         $searchResults->setSearchCriteria($searchCriteria);
         $searchResults->setTotalCount($collection->getSize());
 
