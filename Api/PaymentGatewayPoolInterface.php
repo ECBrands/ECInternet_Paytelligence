@@ -7,6 +7,9 @@ declare(strict_types=1);
 
 namespace ECInternet\Paytelligence\Api;
 
+/**
+ * @api
+ */
 interface PaymentGatewayPoolInterface
 {
     /**

@@ -29,29 +29,29 @@ class Delete extends Index implements HttpPostActionInterface
         /** @var \Magento\Framework\Controller\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
 
-        $id = $this->getRequest()->getParam('id');
-        if ($id) {
-            /** @var \ECInternet\Paytelligence\Model\PaytelligenceCard $card */
-            $card = $this->getCard($id);
-            if ($card) {
-                try {
-                    // Delete card
-                    $this->markAsDeleted($card);
+        if ($id = $this->getRequest()->getParam('id')) {
+            if (is_numeric($id)) {
+                /** @var \ECInternet\Paytelligence\Model\PaytelligenceCard $card */
+                if ($card = $this->getCard((int)$id)) {
+                    try {
+                        // Delete card
+                        $this->markAsDeleted($card);
 
-                    // Add message to screen
-                    $this->messageManager->addSuccessMessage('The Card has been deleted.');
+                        // Add message to screen
+                        $this->messageManager->addSuccessMessage('The Card has been deleted.');
 
-                    // Redirect to homepage
-                    return $resultRedirect->setPath('*/*/');
-                } catch (CouldNotSaveException $e) {
-                    $this->log('execute()', [
-                        'exception' => $e->getMessage(),
-                        'trace'     => $e->getTraceAsString()
-                    ]);
+                        // Redirect to homepage
+                        return $resultRedirect->setPath('*/*/');
+                    } catch (CouldNotSaveException $e) {
+                        $this->log('execute()', [
+                            'exception' => $e->getMessage(),
+                            'trace'     => $e->getTraceAsString()
+                        ]);
 
-                    $this->messageManager->addErrorMessage('Unable to delete Card.');
+                        $this->messageManager->addErrorMessage('Unable to delete Card.');
 
-                    return $resultRedirect->setPath('*/*/');
+                        return $resultRedirect->setPath('*/*/');
+                    }
                 }
             }
         }

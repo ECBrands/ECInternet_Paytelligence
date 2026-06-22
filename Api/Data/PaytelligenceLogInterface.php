@@ -7,6 +7,9 @@ declare(strict_types=1);
 
 namespace ECInternet\Paytelligence\Api\Data;
 
+/**
+ * @api
+ */
 interface PaytelligenceLogInterface
 {
     public const COLUMN_ID              = 'entity_id';

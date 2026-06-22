@@ -11,6 +11,9 @@ use ECInternet\Paytelligence\Api\Data\PaytelligenceCardInterface;
 use ECInternet\Paytelligence\Api\Data\SetCardIdRequestInterface;
 use Magento\Framework\Api\SearchCriteriaInterface;
 
+/**
+ * @api
+ */
 interface PaytelligenceCardRepositoryInterface
 {
     /**

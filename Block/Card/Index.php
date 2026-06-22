@@ -11,7 +11,6 @@ use Magento\Framework\View\Element\Template\Context;
 use Magento\Framework\View\Element\Template;
 use Magento\Theme\Block\Html\Pager;
 use ECInternet\Paytelligence\Helper\Customer as CustomerHelper;
-use ECInternet\Paytelligence\Helper\Data;
 use ECInternet\Paytelligence\Model\PaytelligenceCard;
 use ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard\CollectionFactory as CardCollectionFactory;
 use Psr\Log\LoggerInterface;
@@ -29,11 +28,6 @@ class Index extends Template
     private $customerHelper;
 
     /**
-     * @var \ECInternet\Paytelligence\Helper\Data
-     */
-    private $helper;
-
-    /**
      * @var \ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard\CollectionFactory
      */
     private $cardCollectionFactory;
@@ -44,11 +38,15 @@ class Index extends Template
     private $logger;
 
     /**
+     * @var \ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard\Collection|bool|null
+     */
+    private $cardsCache = null;
+
+    /**
      * Index constructor.
      *
      * @param \Magento\Framework\View\Element\Template\Context                                  $context
      * @param \ECInternet\Paytelligence\Helper\Customer                                         $customerHelper
-     * @param \ECInternet\Paytelligence\Helper\Data                                             $helper
      * @param \ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceCard\CollectionFactory $cardCollectionFactory
      * @param \Psr\Log\LoggerInterface                                                          $logger
      * @param array                                                                             $data
@@ -56,7 +54,6 @@ class Index extends Template
     public function __construct(
         Context $context,
         CustomerHelper $customerHelper,
-        Data $helper,
         CardCollectionFactory $cardCollectionFactory,
         LoggerInterface $logger,
         array $data = []
@@ -64,7 +61,6 @@ class Index extends Template
         parent::__construct($context, $data);
 
         $this->customerHelper        = $customerHelper;
-        $this->helper                = $helper;
         $this->logger                = $logger;
         $this->cardCollectionFactory = $cardCollectionFactory;
     }
@@ -115,10 +111,14 @@ class Index extends Template
      */
     public function getCards()
     {
+        if ($this->cardsCache !== null) {
+            return $this->cardsCache;
+        }
+
         $this->log('getCards()');
 
         if ($customer = $this->customerHelper->getCurrentCustomer()) {
-            $customerNumbers = $this->helper->getCustomerNumbers($customer);
+            $customerNumbers = $this->customerHelper->getCustomerNumbers($customer);
             $this->log('getCards()', ['customerNumbers' => $customerNumbers]);
 
             if ($customerNumbers) {
@@ -133,7 +133,7 @@ class Index extends Template
                     : 10;
 
                 $collection = $this->cardCollectionFactory->create()
-                    ->addFieldToFilter(PaytelligenceCard::COLUMN_CUSTOMER, ['in' => implode(',', $customerNumbers)])
+                    ->addFieldToFilter(PaytelligenceCard::COLUMN_CUSTOMER, ['in' => $customerNumbers])
                     ->addFieldToFilter(PaytelligenceCard::COLUMN_ISSTORED, ['eq' => 1])
                     ->addFieldToFilter(PaytelligenceCard::COLUMN_CARDSTTE, ['eq' => 1])
                     ->setPageSize($pageSize)
@@ -144,11 +144,15 @@ class Index extends Template
                     'count' => $collection->getSize()
                 ]);
 
-                return $collection;
+                $this->cardsCache = $collection;
+
+                return $this->cardsCache;
             }
         }
 
-        return false;
+        $this->cardsCache = false;
+
+        return $this->cardsCache;
     }
 
     /**

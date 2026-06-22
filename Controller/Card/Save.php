@@ -4,8 +4,6 @@
  * Contact Licensing@ECInternet.com for use guidelines
  */
 
-/** @noinspection PhpArrayUsedOnlyForWriteInspection */
-/** @noinspection PhpArrayWriteIsNotUsedInspection */
 /** @noinspection PhpUnusedLocalVariableInspection */
 
 declare(strict_types=1);
@@ -17,6 +15,9 @@ use Exception;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Exception\CouldNotSaveException;
 
+/**
+ * @SuppressWarnings(PHPMD.LongVariable)
+ */
 class Save extends Card implements HttpPostActionInterface
 {
     /**
@@ -139,7 +140,7 @@ class Save extends Card implements HttpPostActionInterface
             $addCardPaymentGatewayName = $this->getAddCardPaymentGatewayName();
             $this->log('execute()', ['addCardPaymentGatewayName' => $addCardPaymentGatewayName]);
 
-            if (!$addCardPaymentGatewayName) {
+            if ($addCardPaymentGatewayName === '') {
                 $this->messageManager->addNoticeMessage(
                     __("Paytellignce not configured correctly. Please set 'addCardPaymentGateway' setting.")
                 );

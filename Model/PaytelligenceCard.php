@@ -94,6 +94,11 @@ class PaytelligenceCard extends AbstractExtensibleModel implements IdentityInter
         return $this->getData(self::COLUMN_ID);
     }
 
+    public function setId($id)
+    {
+        return $this->setData(self::COLUMN_ID, $id);
+    }
+
     public function getCreatedAt()
     {
         return (string)$this->getData(self::COLUMN_CREATED_AT);
@@ -560,7 +565,11 @@ class PaytelligenceCard extends AbstractExtensibleModel implements IdentityInter
         }
 
         if (isset($data[self::COLUMN_CARDTYPE])) {
-            $this->setCardType($data[self::COLUMN_CARDTYPE]);
+            if (is_numeric($data[self::COLUMN_CARDTYPE])) {
+                $this->setCardType((int)$data[self::COLUMN_CARDTYPE]);
+            } else {
+                $this->log('buildFromArray() - Unable to set ' . self::COLUMN_CARDTYPE . ', - not numeric.');
+            }
         }
 
         if (isset($data[self::COLUMN_CARDNAME])) {
@@ -602,6 +611,7 @@ class PaytelligenceCard extends AbstractExtensibleModel implements IdentityInter
         if (isset($data[self::COLUMN_EXPYEAR])) {
             if (is_numeric($data[self::COLUMN_EXPYEAR])) {
                 $this->setExpiryYear((int)$data[self::COLUMN_EXPYEAR]);
+            } else {
             }
         }
 

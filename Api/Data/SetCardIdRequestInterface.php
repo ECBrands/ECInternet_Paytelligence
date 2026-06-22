@@ -7,6 +7,9 @@ declare(strict_types=1);
 
 namespace ECInternet\Paytelligence\Api\Data;
 
+/**
+ * @api
+ */
 interface SetCardIdRequestInterface
 {
     public const COLUMN_ID     = PaytelligenceCardInterface::COLUMN_ID;

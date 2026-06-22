@@ -91,7 +91,7 @@ class Data extends AbstractHelper
     ) {
         $this->log('getStoredCardCollectionForCustomer()');
 
-        $customerNumbers = $this->getCustomerNumbers($customer);
+        $customerNumbers = $this->customerHelper->getCustomerNumbers($customer);
         $this->log('getStoredCardCollectionForCustomer()', ['customerNumbers' => $customerNumbers]);
 
         if ($collection = $this->getStoredCardCollectionByCustomerNumbers($customerNumbers)) {
@@ -104,16 +104,6 @@ class Data extends AbstractHelper
         }
 
         return null;
-    }
-
-    /**
-     * @param \Magento\Customer\Api\Data\CustomerInterface $customer
-     *
-     * @return string[]
-     */
-    public function getCustomerNumbers(CustomerInterface $customer)
-    {
-        return $this->customerHelper->getCustomerNumbers($customer);
     }
 
     /**
@@ -162,11 +152,11 @@ class Data extends AbstractHelper
 
     public function hasPreviousTransactions(CustomerInterface $customer, string $cardMask)
     {
-        $customerNumbers = $this->getCustomerNumbers($customer);
+        $customerNumbers = $this->customerHelper->getCustomerNumbers($customer);
         $this->log('hasPreviousTransactions()', ['customerNumbers' => $customerNumbers]);
 
         $collection = $this->paytelligenceTransCollectionFactory->create()
-            ->addFieldToFilter(PaytelligenceTrans::COLUMN_CUSTOMER, ['in' => implode(',', $customerNumbers)])
+            ->addFieldToFilter(PaytelligenceTrans::COLUMN_CUSTOMER, ['in' => $customerNumbers])
             ->addFieldToFilter(PaytelligenceTrans::COLUMN_CARDNUM, ['eq' => $cardMask]);
 
         return $collection->getSize() > 0;
@@ -198,7 +188,7 @@ class Data extends AbstractHelper
                 PaytelligenceCard::COLUMN_EXPYEAR  => $expYear
             ]);
 
-            $customerNumbers = $this->getCustomerNumbers($customer);
+            $customerNumbers = $this->customerHelper->getCustomerNumbers($customer);
             $this->log('confirmNewCard()', ['customerNumbers' => $customerNumbers]);
 
             if (!is_numeric($expMonth)) {
@@ -254,9 +244,9 @@ class Data extends AbstractHelper
             ->addFieldToFilter(PaytelligenceCard::COLUMN_CARDSTTE, ['eq' => $cardState])
             ->addFieldToFilter(PaytelligenceCard::COLUMN_ISSTORED, ['eq' => $isStored])
             ->addFieldToFilter(PaytelligenceCard::COLUMN_CARDMASK, ['like' => '%' . $last4digits])
-            ->addFieldToFilter(PaytelligenceCard::COLUMN_CUSTOMER, ['in' => implode(',', $customerNumbers)])
+            ->addFieldToFilter(PaytelligenceCard::COLUMN_CUSTOMER, ['in' => $customerNumbers])
             ->addFieldToFilter(PaytelligenceCard::COLUMN_EXPMONTH, ['eq' => $expirationMonth])
-            ->addFieldToFilter(PaytelligenceCard::COLUMN_EXPYEAR,  ['eq' => $expirationYear]);
+            ->addFieldToFilter(PaytelligenceCard::COLUMN_EXPYEAR, ['eq' => $expirationYear]);
 
         $this->log('isNewCard()', ['query' => $cardCollection->getSelect()]);
 
@@ -330,11 +320,11 @@ class Data extends AbstractHelper
     {
         $this->log('getStoredCardCollectionByCustomerNumbers()', ['customerNumbers' => $customerNumbers]);
 
-        if (count($customerNumbers) > 0) {
+        if (!empty($customerNumbers)) {
             return $this->paytelligenceCardCollectionFactory->create()
                 ->addFieldToFilter(PaytelligenceCard::COLUMN_CARDSTTE, ['eq' => 1])
                 ->addFieldToFilter(PaytelligenceCard::COLUMN_ISSTORED, ['eq' => 1])
-                ->addFieldToFilter(PaytelligenceCard::COLUMN_CUSTOMER, ['in' => implode(',', $customerNumbers)]);
+                ->addFieldToFilter(PaytelligenceCard::COLUMN_CUSTOMER, ['in' => $customerNumbers]);
         }
 
         return null;
