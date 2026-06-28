@@ -11,6 +11,8 @@ use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 
 /**
  * PaytelligenceLog ResourceModel Collection
+ *
+ * @SuppressWarnings(PHPMD.CamelCasePropertyName)
  */
 class Collection extends AbstractCollection
 {
@@ -33,10 +35,12 @@ class Collection extends AbstractCollection
      * Define resource model
      *
      * @return void
+     *
+     * @noinspection PhpFullyQualifiedNameUsageInspection
+     * @SuppressWarnings(PHPMD.CamelCaseMethodName)
      */
     protected function _construct()
     {
-        /** @noinspection PhpFullyQualifiedNameUsageInspection */
         $this->_init(
             \ECInternet\Paytelligence\Model\PaytelligenceLog::class,
             \ECInternet\Paytelligence\Model\ResourceModel\PaytelligenceLog::class

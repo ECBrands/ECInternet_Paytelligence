@@ -14,6 +14,9 @@ use Magento\Framework\Registry;
 use Magento\Ui\Component\Layout\Tabs\TabInterface;
 use ECInternet\Paytelligence\Block\Adminhtml\Card\Index;
 
+/**
+ * @SuppressWarnings(PHPMD.CamelCasePropertyName)
+ */
 class Cards extends Template implements TabInterface
 {
     /**

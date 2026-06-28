@@ -29,6 +29,13 @@
 	<preference for="ECInternet\Paytelligence\Api\PaymentGatewayPoolInterface"
 	            type="ECInternet\Paytelligence\Model\PaymentGatewayPool" />
 
+    <!-- Add Logger to Data -->
+	<type name="ECInternet\Paytelligence\Helper\Data">
+		<arguments>
+			<argument name="logger" xsi:type="object">ECInternetPaytelligenceLogger</argument>
+		</arguments>
+	</type>
+
 	<!-- Custom Logger - Must be injected into each class which needs it -->
 	<virtualType name="ECInternetPaytelligenceLogger" type="Magento\Framework\Logger\Monolog">
 		<arguments>
